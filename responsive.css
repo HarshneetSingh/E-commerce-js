@@ -1,0 +1,17 @@
+@media screen and (max-width:700px) {
+    .footer-row{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .footer-col_2{
+        margin-top: 20px;
+    }
+    footer{
+        height: 570px;
+    }
+    .footer-ul{
+        display: none;
+    }
+
+}
