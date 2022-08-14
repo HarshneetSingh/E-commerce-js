@@ -3,13 +3,17 @@
 // Element FOR SLIDER
 let current = 0
 const slideImg = document.querySelectorAll('.slide');
+const parallax = document.querySelector('.slider-parallax');
 const rightBtn = document.querySelector('.slideRight');
 const leftBtn = document.querySelector('.slideLeft');
 
 
-// ELEMENTS FOR CART
+// ELEMENTS FOR CART()
+const header = document.querySelector('header');
+const headerHeight = header.getBoundingClientRect().bottom;
 const nav = document.querySelector('nav')
 const main = document.querySelector('main')
+const footer = document.querySelector('footer');
 const cartBtn = document.querySelector('.cart');
  const cartSide = document.querySelector('.cart-side')
 // ********** event listeners ****************
@@ -19,6 +23,22 @@ const cartBtn = document.querySelector('.cart');
 window.addEventListener('DOMContentLoaded', () => {
     startImage();
 })
+
+window.addEventListener('scroll', () => {
+
+    
+    let yOffset =window.pageYOffset;
+    slideImg.forEach((slide)=>slide.style.backgroundPositionY =`${yOffset * 0.5}px`);
+
+    if(yOffset>headerHeight){
+        header.classList.add('fixed-header');
+        document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="white")
+    }else{
+        header.classList.remove('fixed-header');
+        document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="black")
+
+    }
+});
 
 //?        SLIDER LEFT RIGHT BUTTON 
 leftBtn.addEventListener('click', slideLeft);
@@ -59,29 +79,23 @@ function slideLeft() {
 // *function for cartBtn
 function cart() {
    
-    const crossBtn = document.createElement('i')
-
+    const crossBtn = document.querySelector('.cross-mark')
     // adding class to show cart
     cartSide.classList.add('cart-side-active');
     cartSide.classList.remove('cart-side-not-active');
     // making backgroung opacity increases
 
-    nav.style.opacity = '0.5';
-    main.style.opacity = '0.5';
+    nav.style.opacity = '0.4';
+    main.style.opacity = '0.4';
+    footer.style.opacity = '0.4';
 
-    // adding cross
 
-    crossBtn.className = 'fa-solid fa-xmark cross-mark';
-    cartSide.appendChild(crossBtn);
     crossBtn.addEventListener('click', () => {
-        // removing cross btn
-        cartSide.remove(crossBtn)
-
-
 
         // making opacity normal
         nav.style.opacity = '1';
         main.style.opacity = '1';
+        footer.style.opacity = '1';
 
         // adding cart-side-not-active
         cartSide.classList.add('cart-side-not-active')

@@ -17,14 +17,24 @@
 /* navbar */
 
 header {
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     top: 0;
-    width: 100%; z-index: 100;   background-color: black;
-    color: var(--light-color);
+    width: 100%;
+    background-color: transparent;
+    z-index: 100;
+    color: black;
     padding: 0rem 1rem 0.5rem 1rem;
-    letter-spacing: 3px; 
-    
+    letter-spacing: 3px;
+
+}
+
+.fixed-header {
+    position: fixed;
+    color: white;
+    box-shadow: 0 0 100px black;
+    background-color: black;
+    transition: 0.5s;
 }
 
 nav,
@@ -47,7 +57,7 @@ nav ul li button {
     font-size: 14px;
     cursor: pointer;
     margin-top: 20px;
-    color: white;
+    font-weight: bold;
     margin-right: 15px;
 }
 
@@ -56,7 +66,7 @@ nav ul li:nth-child(1) {
 }
 
 .nav-heading {
-    margin-right: 100px;
+    margin-right: 120px;
 }
 
 .nav-heading h2 {
@@ -69,6 +79,7 @@ nav ul li:nth-child(1) {
     font-size: 10px;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 4PX;
+    font-weight: bold;
 }
 
 .cart {
@@ -80,8 +91,9 @@ nav ul li:nth-child(1) {
 
 nav ul li button:hover,
 .cart:hover {
-    color: antiquewhite;
-    transition: 0.8s;
+    color: burlywood !important;
+
+    transition: 0.7s;
 }
 
 .cart-side {
@@ -92,23 +104,26 @@ nav ul li button:hover,
     background-color: white;
     top: 0;
     color: black;
-    
 }
+
 .cart-side-not-active {
     transform: translateX(100%);
     transition: 1s;
 }
+
 .cart-side-active {
     transition: 1s;
     transform: translateX(0%);
 
 }
-.cross-mark{
+
+.cross-mark {
     font-size: 3.5rem;
     padding: 1rem 2rem;
     color: rgba(0, 0, 0, 0.694);
 }
-.cross-mark:hover{
+
+.cross-mark:hover {
     color: black;
     transition: 0.5s;
 }
@@ -118,7 +133,6 @@ nav ul li button:hover,
 /* *            SLIDER             */
 
 .slide {
-    background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -205,24 +219,71 @@ nav ul li button:hover,
     height: 100vh;
 }
 
+.hello:nth-child(3) {
+    background-attachment: fixed;
+    background-image: url(/img/pexels-cottonbro-7224925.jpg);
+    height: 400px;
+    background-size: cover;
+}
+
+
+
+/* BLUR BTN  */
+.blur {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    
+}
+
+.footer-shop {
+    width: 100%;
+    height: 120px;
+    background-image: url(/img/pexels-polina-tankilevitch-6939095\ \(1\).jpg);
+    backdrop-filter: blur(14px);
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+
+}
+
+.blur-btn {
+    position: absolute;
+    top: 30%;
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    letter-spacing: 2px ;
+}
+.blur-btn:hover {
+    color: white;
+    background-color: black;
+    transition: 0.7s;
+    border: 2px solid white;
+}
+
 /* footer */
 
 footer {
     width: 100%;
-    position: absolute;
+    position: relative;
     bottom: 0;
-    background: linear-gradient(to right, #2c47df, #2d0b00);
-    color: var(--light-color);
-    padding: 60px 0px 0px 0px;
-    border-top-left-radius: 140px;
+    background: #111;
+    color: #ccc;
     font-size: 13px;
-    height: 350px;
+    letter-spacing: 2px;
+    line-height: 20px;
 }
 
+
+
 .footer-row {
+    padding-top: 40px;
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     margin: auto;
 }
 
@@ -255,9 +316,7 @@ footer {
     margin: 20px 0;
 }
 
-/* .footer-ul li{
-    margin-top: 20px;
-} */
+
 .footer_above_hr {
     margin-top: 24px;
 }
@@ -275,10 +334,7 @@ footer {
     font-size: 20px;
 }
 
-footer hr {
-    width: 80%;
-    margin: 15px auto 30px auto;
-}
+
 
 .footer-row2 {
     width: 80%;
@@ -293,26 +349,43 @@ footer hr {
 }
 
 .footer-row2 ul {
-    margin-bottom: 10px;
     list-style: none;
     display: flex;
-    color: #ccc;
     justify-content: space-between;
 }
 
 .footer-row2 ul li {
-    height: 30px;
-    margin-left: 10px;
-    margin-right: 2px;
-    width: 30px;
+    font-size: 2rem;
+
 }
 
-.footer-row2 ul li:hover {
-    box-shadow: 1px 1px 10px black;
+.footer-row2 ul li:first-child {
+    margin-right: 20px;
+}
 
+.footer-row2 ul li a:hover {
+    color: burlywood;
+    transition: 0.5s;
 }
 
 .footer-ul li:hover {
     color: rgba(255, 14, 151, 0.477);
     text-shadow: 1px 1px 10px black;
+}
+
+.other-discription {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.other-discription span {
+
+    color: yellowgreen;
+}
+
+.hr {
+    width: 90%;
+    margin: 15px auto 30px auto;
 }

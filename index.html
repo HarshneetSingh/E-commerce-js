@@ -7,6 +7,8 @@
     <title>Xenon's | E-commerce</title>
     <!-- styles -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 </head>
@@ -16,6 +18,7 @@
     <header>
         <nav>
             <ul>
+                <li><button>HOME</button></li>
                 <li><button>SHOP</button></li>
                 <li><button>CATEGORY</button></li>
                 <li><button>CONTACT-US</button></li>
@@ -26,16 +29,16 @@
             </div>
             <i class="fa-solid fa-cart-shopping cart"></i>
         </nav>
- <aside class="cart-side cart-side-not-active"></aside>
+        <aside class="cart-side cart-side-not-active"><i class="fa-solid fa-xmark cross-mark"></i></aside>
 
     </header>
-   
+
 
 
     <!-- main -->
     <main>
         <!-- SLIDER -->
-        <section class="slider">
+        <section class="slider-parallax">
             <div class="slide1 slide"></div>
             <div class="slide2 slide"></div>
             <div class="slide3 slide"></div>
@@ -51,14 +54,29 @@
         <section class="hello">
             hello
         </section>
+        <section class="hello">
+            hello
+        </section>
+        <section class="hello">
+            <hello></hello>
+        </section>
+        <section class="blur">
+            <div class="footer-shop"></div>
+            <button class="blur-btn">SHOP NOW</button>
+        </section>
     </main>
     <!-- footer -->
-    <!-- <footer>
+    <footer>
+
         <div class="footer-row">
+
             <div class="footer-col_1">
-                <h3>Kalptaru Inter College Jitholi</h3>
+                <h3>Gentlemen's Street</h3>
                 <p class="col_1-p">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta eligendi ipsum corporis. Omnis, reprehenderit natus incidunt accusantium tempora molestias repellendus fuga repellat adipisci nisi tenetur vel laudantium labore quaerat provident dolore voluptatum beatae sint eveniet sapiente placeat? Quaerat, voluptates aliquam?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta eligendi ipsum corporis. Omnis,
+                    reprehenderit natus incidunt accusantium tempora molestias repellendus fuga repellat adipisci nisi
+                    tenetur vel laudantium labore quaerat provident dolore voluptatum beatae sint eveniet sapiente
+                    placeat? Quaerat, voluptates aliquam?
                 </p>
             </div>
 
@@ -73,18 +91,8 @@
             </div>
 
         </div>
-        <div class="footer_above_hr">
 
-            <ul class="footer-ul">
-
-                <li class="footer-li"><a class="footer-a" herf="#">Home</a></li>
-                <li class="footer-li"><a class="footer-a" herf="#">Gallery</a></li>
-                <li class="footer-li"><a class="footer-a" herf="#">About</a></li>
-                <li class="footer-li"><a class="footer-a" herf="#">Blog</a></li>
-                <li class="footer-li"><a class="footer-a" herf="#">Contact</a></li>
-            </ul>
-        </div>
-        <hr>
+        <hr class="hr">
         <div class="footer-row2">
             <div class="row2-col1">
                 <p>Copyright &copy;2022. All rights reserved.</p>
@@ -92,21 +100,23 @@
 
             <ul>
                 <li>
-                        <image src="./icons/facebook-brands.svg"></image>
-                    <!-- </a><a class="footer-icon-facebook" href="#"> -->
-    <!-- </li>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                </li>
                 <li>
-                    
-                        <image src="./icons/whatsapp-square-brands.svg"></image> -->
-    <!-- </a><a class="footer-icon-whatsapp" href="#"> -->
-    <!-- </li>
+                    <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+                </li>
             </ul>
 
 
 
         </div>
-
-    </footer>   -->
+        <hr class="hr">
+        <div class="other-discription">
+            <p>Each product is hand-selected by our editors because we think you'll love it. If you buy something
+                through our link, we may earn a commission from the retailer or it may be a product that we produce or
+                promote through one of our <span>affiliated companies.</span></p>
+        </div>
+    </footer>
 </body>
 <script src="app.js"></script>
 
