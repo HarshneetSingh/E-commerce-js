@@ -31,11 +31,11 @@ window.addEventListener('scroll', () => {
     slideImg.forEach((slide)=>slide.style.backgroundPositionY =`${yOffset * 0.5}px`);
 
     if(yOffset>headerHeight){
-        header.classList.add('fixed-header');
-        document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="white")
+        // header.classList.add('fixed-header');
+        // document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="white")
     }else{
         header.classList.remove('fixed-header');
-        document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="black")
+        // document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="black")
 
     }
 });
@@ -107,9 +107,11 @@ function cart() {
 }
 // ************SETTING INTERVALS***********
 
-// setInterval(slideRight,5000)
+// setInterval(slideRight,3000)
 
 
 
+const date = document.getElementById("date")
 
+date.innerHTML = new Date().getFullYear();
 

@@ -31,10 +31,11 @@ header {
 
 .fixed-header {
     position: fixed;
-    color: white;
+    color: #111;
+    transition: color 1s;
     box-shadow: 0 0 100px black;
-    background-color: black;
-    transition: 0.5s;
+    background: white;
+    transition: 0.8s;
 }
 
 nav,
@@ -108,11 +109,11 @@ nav ul li button:hover,
 
 .cart-side-not-active {
     transform: translateX(100%);
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .cart-side-active {
-    transition: 1s;
+    transition: 0.5s;
     transform: translateX(0%);
 
 }
@@ -136,7 +137,7 @@ nav ul li button:hover,
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 100vh;
+    height: 115.8vh;
 
 }
 
@@ -213,10 +214,52 @@ nav ul li button:hover,
     background-color: rgba(255, 255, 255, 0.717);
     transition: 0.5s;
 }
+.custom-shape-divider-bottom-1660815753 {
+    position: absolute;
+    top: -112px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
 
+.custom-shape-divider-bottom-1660815753 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 112px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1660815753 .shape-fill {
+    fill: #111;
+}
 .hello {
     width: 100%;
-    height: 100vh;
+    height: 200vh;
+    background: #111;
+    position: relative;
+}
+
+.hello:nth-child(2){
+    color: white;
+    background-color: #111;
+}
+.deals-line{
+    width: 100%;
+    border: 1px solid white;
+    position: absolute;
+    top: 40px;
+}
+.deals-heading{
+    height: 50px;
+    position: absolute;
+    background-color: #111;
+    top: 20px;
+    padding: 0 1rem;
+    font-size: 3rem;
+    right: 100px;
 }
 
 .hello:nth-child(3) {
@@ -224,6 +267,10 @@ nav ul li button:hover,
     background-image: url(/img/pexels-cottonbro-7224925.jpg);
     height: 400px;
     background-size: cover;
+}
+.hello:nth-child(4){
+    width: 100%;
+    height: 110vh;
 }
 
 
@@ -246,7 +293,7 @@ nav ul li button:hover,
     background-position: center;
     filter: blur(4px);
     -webkit-filter: blur(4px);
-
+background-attachment: fixed;
 }
 
 .blur-btn {
@@ -333,8 +380,6 @@ footer {
 .footer-ul li {
     font-size: 20px;
 }
-
-
 
 .footer-row2 {
     width: 80%;
