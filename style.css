@@ -214,9 +214,11 @@ nav ul li button:hover,
     background-color: rgba(255, 255, 255, 0.717);
     transition: 0.5s;
 }
-.custom-shape-divider-bottom-1660815753 {
+
+/*  */
+.custom-shape-divider-bottom-1660895789 {
     position: absolute;
-    top: -112px;
+    top: -130px;
     left: 0;
     width: 100%;
     overflow: hidden;
@@ -224,43 +226,31 @@ nav ul li button:hover,
     transform: rotate(180deg);
 }
 
-.custom-shape-divider-bottom-1660815753 svg {
+.custom-shape-divider-bottom-1660895789 svg {
     position: relative;
     display: block;
-    width: calc(100% + 1.3px);
-    height: 112px;
-    transform: rotateY(180deg);
+    width: calc(199% + 1.3px);
+    height: 150px;
 }
 
-.custom-shape-divider-bottom-1660815753 .shape-fill {
+.custom-shape-divider-bottom-1660895789 .shape-fill {
     fill: #111;
 }
+
+
 .hello {
     width: 100%;
-    height: 200vh;
+    height: 450vh;
     background: #111;
     position: relative;
 }
 
-.hello:nth-child(2){
+.hello:nth-child(2) {
     color: white;
     background-color: #111;
 }
-.deals-line{
-    width: 100%;
-    border: 1px solid white;
-    position: absolute;
-    top: 40px;
-}
-.deals-heading{
-    height: 50px;
-    position: absolute;
-    background-color: #111;
-    top: 20px;
-    padding: 0 1rem;
-    font-size: 3rem;
-    right: 100px;
-}
+
+
 
 .hello:nth-child(3) {
     background-attachment: fixed;
@@ -268,20 +258,159 @@ nav ul li button:hover,
     height: 400px;
     background-size: cover;
 }
-.hello:nth-child(4){
+
+.hello:nth-child(4) {
     width: 100%;
     height: 110vh;
 }
 
+/* best deals  */
+
+/* lind and best offer  */
+.deals-line {
+    width: 100%;
+    border: 1px solid white;
+    position: absolute;
+    top: 40px;
+}
+
+/* info of women and mens */
+/* mens */
+.deals-heading {
+    height: 50px;
+    position: absolute;
+    background-color: #111;
+    top: 20px;
+    padding: 0 1rem;
+    font-size: 3rem;
+    left: 100px;
+}
+
+.deals-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    position: relative;
+    margin: auto;
+    padding: 10rem 0rem 5rem 0rem;
+}
+
+.article-header h2 {
+    letter-spacing: 4px;
+    position: absolute;
+    text-transform: capitalize;
+    font-size: 5.5rem;
+}
+
+.article-header:nth-child(1) h2:first-child {
+    left: 100px;
+    top: 320px;
+}
+
+.deals-container div video {
+    margin-right: 45px;
+    width: 430;
+}
 
 
+
+.article-inner {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 600px;
+    left: 110px;
+    height: 170px;
+    width: 430px;
+}
+
+.article-inner div hr {
+    height: 200px;
+}
+
+.article-inner div {
+    width: 400px;
+    margin-top: 2rem;
+}
+
+.article-inner div p {
+    font-size: 25px;
+    line-height: 35px;
+}
+
+.buyNowBtn {
+    text-decoration: none;
+    position: absolute;
+    top: 250px;
+    left: -2;
+    font-size: 1rem;
+    padding: 0.6rem 2.5rem;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.buyNowBtn:hover {
+    transition: 0.8s;
+    color: #111;
+    background: white;
+}
+
+/* womens */
+.article-header:nth-child(2) h2 {
+    top: 250px;
+    left: 570px;
+}
+
+.second {
+    top: 600px;
+    left: 570px;
+    text-align: left;
+
+}
+
+.vid {
+    margin-left: 70;
+}
+
+/* watches */
+
+
+.deals-container:nth-child(5) div video {
+    width: 100%;
+    margin-top: 15vh;
+}
+
+.container3 h2 {
+    font-size: 8rem;
+    position: absolute;
+    top: 60;
+    right: 350px;
+}
+.container3 h2 span {
+    font-size: 1rem;
+}
+.third{
+    top: 630;
+    left: 20;
+    z-index: 1;
+}
+.third div a
+{
+    font-size: 1.5rem;
+    color: #111;
+     border-color: #111;
+}
+.third div a:hover{
+    color: white;
+    border-color:white ;
+    background-color: black;
+}
 /* BLUR BTN  */
 .blur {
     position: relative;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
-    
 }
 
 .footer-shop {
@@ -293,7 +422,7 @@ nav ul li button:hover,
     background-position: center;
     filter: blur(4px);
     -webkit-filter: blur(4px);
-background-attachment: fixed;
+    background-attachment: fixed;
 }
 
 .blur-btn {
@@ -302,8 +431,9 @@ background-attachment: fixed;
     background-color: transparent;
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
-    letter-spacing: 2px ;
+    letter-spacing: 2px;
 }
+
 .blur-btn:hover {
     color: white;
     background-color: black;
