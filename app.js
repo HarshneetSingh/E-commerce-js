@@ -1,3 +1,6 @@
+const logos = [
+    "gucci.png" , "levis.png", "lv.png", "rolex.png","casio.png"
+]
 // ************ELEMENTS***************8
 
 // Element FOR SLIDER
@@ -15,25 +18,29 @@ const nav = document.querySelector('nav')
 const main = document.querySelector('main')
 const footer = document.querySelector('footer');
 const cartBtn = document.querySelector('.cart');
- const cartSide = document.querySelector('.cart-side')
+const cartSide = document.querySelector('.cart-side')
 // ********** event listeners ****************
 
 // ?                 window 
 
 window.addEventListener('DOMContentLoaded', () => {
-    startImage();
+    // startImage();
+    // loading of date
+    // DateRecent();
+    // loading of co logo
+    // coLogoLoad(logos);
 })
 
 window.addEventListener('scroll', () => {
 
-    
-    let yOffset =window.pageYOffset;
-    slideImg.forEach((slide)=>slide.style.backgroundPositionY =`${yOffset * 0.5}px`);
 
-    if(yOffset>headerHeight){
+    let yOffset = window.pageYOffset;
+    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.5}px`);
+
+    if (yOffset > headerHeight) {
         // header.classList.add('fixed-header');
         // document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="white")
-    }else{
+    } else {
         header.classList.remove('fixed-header');
         // document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="black")
 
@@ -41,8 +48,8 @@ window.addEventListener('scroll', () => {
 });
 
 //?        SLIDER LEFT RIGHT BUTTON 
-leftBtn.addEventListener('click', slideLeft);
-rightBtn.addEventListener('click', slideRight);
+// leftBtn.addEventListener('click', slideLeft);
+// rightBtn.addEventListener('click', slideRight);
 
 // ?        cart button
 cartBtn.addEventListener('click', cart)
@@ -52,50 +59,51 @@ cartBtn.addEventListener('click', cart)
 
 
 // *functions for slider
-function startImage() {
-    // making images none in start 
-    slideImg.forEach((slide) => slide.style.display = "none");
-    // now adding one initial image
-    slideImg[current].style.display = "block";
-}
-function slideRight() {
+// function startImage() {
+//     // making images none in start 
+//     slideImg.forEach((slide) => slide.style.display = "none");
+//     // now adding one initial image
+//     slideImg[current].style.display = "block";
+// }
+// function slideRight() {
 
-    if (current === slideImg.length - 1) {
-        current = 0;
-    } else {
-        current++;
-    }
-    startImage();
-}
-function slideLeft() {
-    if (current === 0) {
-        current = slideImg.length - 1;
-    } else {
-        current--;
-    }
-    startImage();
-}
+//     if (current === slideImg.length - 1) {
+//         current = 0;
+//     } else {
+//         current++;
+//     }
+//     startImage();
+// }
+// function slideLeft() {
+//     if (current === 0) {
+//         current = slideImg.length - 1;
+//     } else {
+//         current--;
+//     }
+//     startImage();
+// }
 
 // *function for cartBtn
 function cart() {
-   
+
     const crossBtn = document.querySelector('.cross-mark')
+
     // adding class to show cart
     cartSide.classList.add('cart-side-active');
     cartSide.classList.remove('cart-side-not-active');
     // making backgroung opacity increases
 
     nav.style.opacity = '0.4';
-    main.style.opacity = '0.4';
-    footer.style.opacity = '0.4';
+    // main.style.opacity = '0.4';
+    // footer.style.opacity = '0.4';
 
 
     crossBtn.addEventListener('click', () => {
 
         // making opacity normal
         nav.style.opacity = '1';
-        main.style.opacity = '1';
-        footer.style.opacity = '1';
+        // main.style.opacity = '1';
+        // footer.style.opacity = '1';
 
         // adding cart-side-not-active
         cartSide.classList.add('cart-side-not-active')
@@ -105,13 +113,48 @@ function cart() {
 
 
 }
+function bar() {
+
+    const crossBtn = document.querySelector('.cross-mark')
+
+    // adding class to show cart
+    cartSide.classList.add('bar-side-active');
+    cartSide.classList.remove('bar-side-not-active');
+
+
+
+    crossBtn.addEventListener('click', () => {
+
+
+        // adding cart-side-not-active
+        cartSide.classList.add('bar-side-not-active')
+        // removing cart-side-active
+        cartSide.classList.remove('bar-side-active')
+    })
+
+
+}
+//* function for loading co logos
+function coLogoLoad(logos) {
+    const logoContainer = document.querySelector('.logoContainer');
+    logos.forEach((logo) => {
+        const img = document.createElement('img');
+
+        img.src = "/img/"+logo;
+        logoContainer.appendChild(img);
+    })
+
+
+}
 // ************SETTING INTERVALS***********
 
 // setInterval(slideRight,3000)
 
+function DateRecent() {
+    const date = document.getElementById("date")
+
+    date.innerHTML = new Date().getFullYear();
+}
 
 
-const date = document.getElementById("date")
-
-date.innerHTML = new Date().getFullYear();
 

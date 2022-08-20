@@ -18,7 +18,7 @@
 
 header {
     position: absolute;
-    overflow: hidden;
+    /* overflow: hidden; */
     top: 0;
     width: 100%;
     background-color: transparent;
@@ -91,7 +91,7 @@ nav ul li:nth-child(1) {
 }
 
 nav ul li button:hover,
-.cart:hover {
+.cart:hover,.bars {
     color: burlywood !important;
 
     transition: 0.7s;
@@ -129,6 +129,12 @@ nav ul li button:hover,
     transition: 0.5s;
 }
 
+/* *responsive */
+.bars{
+    display: none;
+    font-size: 2rem;
+}
+
 /* main */
 
 /* *            SLIDER             */
@@ -146,11 +152,11 @@ nav ul li button:hover,
 }
 
 .slide2 {
-    background-image: url(/img/pexels-cottonbro-7224925.jpg);
+    background-image: url(/img/both.jpg)
 }
 
 .slide3 {
-    background-image: url(/img/slide1.avif);
+    background-image: url(/img/man.jpg);
 }
 
 .slideRight,
@@ -240,7 +246,7 @@ nav ul li button:hover,
 
 .hello {
     width: 100%;
-    height: 450vh;
+    height: 470vh;
     background: #111;
     position: relative;
 }
@@ -252,17 +258,9 @@ nav ul li button:hover,
 
 
 
-.hello:nth-child(3) {
-    background-attachment: fixed;
-    background-image: url(/img/pexels-cottonbro-7224925.jpg);
-    height: 400px;
-    background-size: cover;
-}
 
-.hello:nth-child(4) {
-    width: 100%;
-    height: 110vh;
-}
+
+
 
 /* best deals  */
 
@@ -384,27 +382,142 @@ nav ul li button:hover,
 .container3 h2 {
     font-size: 8rem;
     position: absolute;
-    top: 60;
+    top: 100;
     right: 350px;
 }
+
 .container3 h2 span {
     font-size: 1rem;
 }
-.third{
+
+.third {
     top: 630;
     left: 20;
     z-index: 1;
 }
-.third div a
-{
+
+.third div a {
     font-size: 1.5rem;
     color: #111;
-     border-color: #111;
+    border-color: #111;
 }
-.third div a:hover{
+
+.third div a:hover {
     color: white;
-    border-color:white ;
+    border-color: white;
     background-color: black;
+}
+
+
+
+
+
+/* *********************** benefits using our services */
+.hello:nth-child(3) {
+    background-attachment: fixed;
+    padding: 3rem 2.5rem 3rem 0rem ;
+    background-image: linear-gradient(to bottom, #ccc, rgba(246, 130, 130, 0.986)), url(/img/istockphoto-1096460950-612x612.jpg);
+    height: 350px;
+    background-color: #111;
+    background-size: auto;
+    display: flex;
+    justify-content: space-between;  letter-spacing: 2px;
+}
+
+.box {
+    background-color: #111;
+    color: #ccc;
+    padding: 3rem;
+    width: 28vw;
+    height: 35vh;
+    display: flex;
+    justify-content: space-between;
+    line-height: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.397);
+}
+
+.box div i{
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+.box div h3{
+    margin-bottom: 10px;
+    color:rgb(115, 180, 146) ;
+}
+
+.box div {
+    width: 20vw;
+}
+
+.Sl {
+    top:-100px ;
+    left: 0px;
+}
+.Sh{
+    top:-125px ;
+    color: white;
+}
+/* ABOUT USS */
+
+
+.hello:nth-child(4) {
+    width: 100%;
+    height: 200vh;
+    
+}
+
+.about-head h3{
+    font-size: 15rem;
+    z-index: 4;
+    color: #ccc;
+    position: absolute;
+    top: 150;
+}
+.about-blur{
+    height:120vh ;
+    margin-top: 100px;
+    width: 340px;position: absolute;
+    top: 0;
+    left: 175;
+    background: url(/img/pexels-polina-tankilevitch-6939095\ \(1\).jpg);
+    background-attachment: fixed;
+    background-position:  left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    
+    filter: blur(4px);
+    -webkit-filter: blur(2px);
+}
+.about-info{
+    left:700;
+    top: 520;
+    color: #ccc;
+}
+.about-info hr{
+    height: 330px;
+}
+.about-info div p{
+    width: 500px;
+}
+.about-info div a{
+    top: 400;
+}
+/* companies igs */
+.logoContainer{
+    background-color: rgba(40, 38, 38, 0.708);
+    position: absolute;
+    bottom: 100;
+    width: 100%;
+    padding-left: 150;
+    white-space: nowrap;
+}
+
+.logoContainer img{
+    width: 100px;
+    margin: 1rem 4rem ;
+    color: white;
 }
 /* BLUR BTN  */
 .blur {

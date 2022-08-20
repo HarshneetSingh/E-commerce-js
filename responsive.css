@@ -1,4 +1,48 @@
-@media screen and (max-width:700px) {
+@media screen and (max-width:800px) {
+    nav ul{
+        flex-direction: column;
+        position: absolute;
+        display: none;
+        top: 100;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        z-index: 200;
+        align-items: center;
+        width: 100%;
+    }
+    nav ul li:nth-child(1){
+        margin-left: 0;
+    }
+    .nav-heading{
+        margin-right: 0;
+
+    }
+    .cart {
+        margin-right: 1rem;
+    }
+    .cart-side{
+        width: 100%;
+    }
+        .bars{ 
+            display: block;
+        }
+    .bar-side{
+        width: 400px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        background-color: white;
+        top: 0;
+        color: black;
+    }
+    .bar-side-not-active{
+        transform: translateX(0%);
+        transition: 0.5s;
+    }
+    .bar-side-active{
+        transform: translateX(100%);
+    }
     .footer-row{
         display: flex;
         flex-direction: column;
