@@ -18,7 +18,7 @@
 
 header {
     position: absolute;
-    /* overflow: hidden; */
+    overflow: hidden;
     top: 0;
     width: 100%;
     background-color: transparent;
@@ -91,7 +91,7 @@ nav ul li:nth-child(1) {
 }
 
 nav ul li button:hover,
-.cart:hover,.bars {
+.cart:hover,.bars:hover {
     color: burlywood !important;
 
     transition: 0.7s;
@@ -119,7 +119,7 @@ nav ul li button:hover,
 }
 
 .cross-mark {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     padding: 1rem 2rem;
     color: rgba(0, 0, 0, 0.694);
 }
@@ -135,6 +135,9 @@ nav ul li button:hover,
     font-size: 2rem;
 }
 
+.bar-side-not-active {
+    display: none;
+}
 /* main */
 
 /* *            SLIDER             */

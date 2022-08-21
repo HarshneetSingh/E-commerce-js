@@ -1,5 +1,5 @@
 const logos = [
-    "gucci.png" , "levis.png", "lv.png", "rolex.png","casio.png"
+    "gucci.png", "levis.png", "lv.png", "rolex.png", "casio.png"
 ]
 // ************ELEMENTS***************8
 
@@ -19,12 +19,17 @@ const main = document.querySelector('main')
 const footer = document.querySelector('footer');
 const cartBtn = document.querySelector('.cart');
 const cartSide = document.querySelector('.cart-side')
+
+// ELEMENTS FOR bar
+const bars = document.querySelector('.bars i');
+const barSide = document.querySelector('.bar-side')
+
 // ********** event listeners ****************
 
 // ?                 window 
 
 window.addEventListener('DOMContentLoaded', () => {
-    // startImage();
+    startImage();
     // loading of date
     // DateRecent();
     // loading of co logo
@@ -48,40 +53,41 @@ window.addEventListener('scroll', () => {
 });
 
 //?        SLIDER LEFT RIGHT BUTTON 
-// leftBtn.addEventListener('click', slideLeft);
-// rightBtn.addEventListener('click', slideRight);
+leftBtn.addEventListener('click', slideLeft);
+rightBtn.addEventListener('click', slideRight);
 
 // ?        cart button
-cartBtn.addEventListener('click', cart)
+cartBtn.addEventListener('click', cart);
+bars.addEventListener('click', bar);
 
 
 // ***********functions****************
 
 
 // *functions for slider
-// function startImage() {
-//     // making images none in start 
-//     slideImg.forEach((slide) => slide.style.display = "none");
-//     // now adding one initial image
-//     slideImg[current].style.display = "block";
-// }
-// function slideRight() {
+function startImage() {
+    // making images none in start 
+    slideImg.forEach((slide) => slide.style.display = "none");
+    // now adding one initial image
+    slideImg[current].style.display = "block";
+}
+function slideRight() {
 
-//     if (current === slideImg.length - 1) {
-//         current = 0;
-//     } else {
-//         current++;
-//     }
-//     startImage();
-// }
-// function slideLeft() {
-//     if (current === 0) {
-//         current = slideImg.length - 1;
-//     } else {
-//         current--;
-//     }
-//     startImage();
-// }
+    if (current === slideImg.length - 1) {
+        current = 0;
+    } else {
+        current++;
+    }
+    startImage();
+}
+function slideLeft() {
+    if (current === 0) {
+        current = slideImg.length - 1;
+    } else {
+        current--;
+    }
+    startImage();
+}
 
 // *function for cartBtn
 function cart() {
@@ -115,21 +121,21 @@ function cart() {
 }
 function bar() {
 
-    const crossBtn = document.querySelector('.cross-mark')
-
+    const crossBtn = document.createElement('i');
+    crossBtn.className = "fa-solid fa-xmark for-bar";
+    barSide.appendChild(crossBtn);
     // adding class to show cart
-    cartSide.classList.add('bar-side-active');
-    cartSide.classList.remove('bar-side-not-active');
-
-
+    barSide.classList.add('bar-side-active');
+    barSide.classList.remove('bar-side-not-active');
+    header.classList.add('bar-content-show');
 
     crossBtn.addEventListener('click', () => {
+        barSide.removeChild(crossBtn);
+        header.classList.remove('bar-content-show');
 
 
-        // adding cart-side-not-active
-        cartSide.classList.add('bar-side-not-active')
-        // removing cart-side-active
-        cartSide.classList.remove('bar-side-active')
+        barSide.classList.add('bar-side-not-active')
+        barSide.classList.remove('bar-side-active')
     })
 
 
@@ -140,7 +146,7 @@ function coLogoLoad(logos) {
     logos.forEach((logo) => {
         const img = document.createElement('img');
 
-        img.src = "/img/"+logo;
+        img.src = "/img/" + logo;
         logoContainer.appendChild(img);
     })
 
