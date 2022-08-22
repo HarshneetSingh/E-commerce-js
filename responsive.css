@@ -1,4 +1,144 @@
+@media screen and (max-width: 1479px) {
+    .third {
+        top: 500px;
+    }
+}
+@media screen and (max-width:1250px) {
+    .about-head h3{
+        font-size: 12rem;
+        left: 30;
+    }
+    .about-blur{
+        width: 270px;
+    }
+    .about-info{
+        left :480px;
+    }
+}
+@media screen and (max-width:1042px){
+    .about-head h3{
+        font-size: 9rem;
+        left: 30;
+    }
+    .about-blur{
+        width: 200px;
+        left: 138px;
+    }
+    .about-info{
+        top: 500px;
+        left :400px;
+    }
+    .about-info div{
+        width: 300px;
+    }
+    .about-info hr{
+        height: 280px;
+    }
+    .about-info div p{
+        width: 400px;
+        font-size: 1.3rem;
+        margin-left: 20px;
+    }
+
+}
+@media screen and (max-width:1170px) {
+    .deals-container {
+        width: 85%;
+    }
+
+    .third {
+        top: 438px;
+    }
+
+    .container3 h2 {
+        right: 250px;
+        font-size: 11vw;
+    }
+}
+
+@media screen and (max-width:1100px) {
+
+    .article-header:nth-child(2) h2 {
+        left: 550px;
+    }
+
+    .second {
+        left: 550px;
+    }
+
+}
+
+@media screen and (max-width:980px) {
+
+    .article-inner div {
+        margin-top: 0;
+    }
+
+    .third {
+        top: 380px;
+    }
+
+    .deals-container {
+        width: 95%;
+    }
+
+    .vid {
+        margin-left: 30px;
+    }
+
+    .deals-container:nth-child(5) div video {
+        width: 100%;
+
+        margin-top: 15vh auto auto auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box {
+        padding: 2rem;
+        line-height: 17px;
+    }
+
+    .box div h3 {
+        font-size: 20px;
+    }
+    .box div p {
+    font-size: 12px;
+}
+}
+@media screen and (max-width:880px) {
+    .deals-container div video {
+        width: 350px;
+    }
+
+    .article-inner {
+        top: 500px;
+    }
+
+    .article-header:nth-child(2) h2 {
+        left: 470px;
+    }
+
+    .second {
+        left: 470px;
+    }
+
+    .third {
+        top: 370px;
+    }
+    .about-info div p{
+        width: 330px;
+    }
+    .about-info hr{
+        height: 320px;
+    }
+}
+
 @media screen and (max-width:800px) {
+    .deals-container {
+        flex-direction: column;
+    }
 
     /* setting ul of navebar  */
     nav ul {
@@ -11,7 +151,10 @@
         align-items: center;
         width: 100%;
     }
-
+    nav ul li button{
+        
+        font-size: 2rem;
+    }
     nav ul li:nth-child(1) {
         margin-left: 0;
     }
@@ -36,7 +179,7 @@
     }
 
     .bar-side {
-        width: 400px;
+        width: 100%;
         height: 100vh;
         position: fixed;
         left: 0;
@@ -94,6 +237,7 @@
     .footer-ul {
         display: none;
     }
+
     .slider-info {
         left: 10%;
     }
@@ -115,7 +259,9 @@
     .slide3 {
         background-image: url(/img/pexels-polina-tankilevitch-6939095\ \(1\).jpg);
 
-    }   .info-btn {
+    }
+
+    .info-btn {
         color: white;
         border: 2px solid white;
     }
@@ -135,7 +281,7 @@
 
 @media screen and (max-width:450px) {
 
- 
+
 
     .slider-info p {
         font-size: 2rem;
@@ -148,7 +294,7 @@
 
     }
 
- 
+
 
     .info-btn:hover {
         color: black;

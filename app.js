@@ -2,7 +2,8 @@ const logos = [
     "gucci.png", "levis.png", "lv.png", "rolex.png", "casio.png"
 ]
 // ************ELEMENTS***************8
-
+// elements for nav
+let currentPositionOfNav= 0;
 // Element FOR SLIDER
 let current = 0
 const slideImg = document.querySelectorAll('.slide');
@@ -13,7 +14,6 @@ const leftBtn = document.querySelector('.slideLeft');
 
 // ELEMENTS FOR CART()
 const header = document.querySelector('header');
-const headerHeight = header.getBoundingClientRect().bottom;
 const nav = document.querySelector('nav')
 const main = document.querySelector('main')
 const footer = document.querySelector('footer');
@@ -31,25 +31,31 @@ const barSide = document.querySelector('.bar-side')
 window.addEventListener('DOMContentLoaded', () => {
     startImage();
     // loading of date
-    // DateRecent();
+    DateRecent();
     // loading of co logo
-    // coLogoLoad(logos);
+    coLogoLoad(logos);
 })
 
 window.addEventListener('scroll', () => {
 
-
+// for header
     let yOffset = window.pageYOffset;
-    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.5}px`);
-
-    if (yOffset > headerHeight) {
-        // header.classList.add('fixed-header');
-        // document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="white")
+   
+    if (currentPositionOfNav <yOffset) {
+         header.classList.add('hiding-navbar');
     } else {
-        header.classList.remove('fixed-header');
-        // document.querySelectorAll('nav ul li button').forEach((button)=>button.style.color="black")
+        header.classList.remove ('hiding-navbar');
+        header.classList.add ('coloring-navbar');
+    }
+    
+    if(yOffset===0) {
+        header.classList.remove ('coloring-navbar')
 
     }
+    currentPositionOfNav = yOffset;
+// for paralaax
+    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.5}px`);
+
 });
 
 //?        SLIDER LEFT RIGHT BUTTON 
