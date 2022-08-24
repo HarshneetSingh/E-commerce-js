@@ -34,10 +34,11 @@ header {
     transform: translateY(calc(-1 * 80px));
 }
 
-.coloring-navbar {
+.coloring-navbar,
+header:hover {
     color: #111;
     box-shadow: 0 0 100px black;
-    background: rgb(226, 221, 221);
+    background: rgb(255, 247, 247);
     transition: 0.8s;
 }
 
@@ -55,9 +56,10 @@ nav ul li {
 
 }
 
-nav ul li button {
-    background-color: transparent;
+nav ul li a {
+    color: #111;
     border: none;
+    text-decoration: none;
     font-size: 14px;
     cursor: pointer;
     margin-top: 20px;
@@ -70,7 +72,7 @@ nav ul li:nth-child(1) {
 }
 
 .nav-heading {
-    margin-right: 120px;
+    margin-right: 160px;
 }
 
 .nav-heading h2 {
@@ -93,7 +95,7 @@ nav ul li:nth-child(1) {
     font-size: 1.8rem;
 }
 
-nav ul li button:hover,
+nav ul li a:hover,
 .cart:hover,
 .bars:hover {
     color: burlywood !important;
@@ -713,4 +715,147 @@ footer {
 .hr {
     width: 90%;
     margin: 15px auto 30px auto;
+}
+
+
+/* contact page */
+
+
+form {
+    background-color: rgba(255, 255, 255, 0.829);
+    padding: 2rem;
+    width: 40vw;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    letter-spacing: 1px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.171);
+}
+
+form div {
+    position: relative;
+}
+
+.login {
+    display: grid;
+}
+
+.login h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.login a {
+    text-decoration: none;
+    color: olivedrab;
+    margin-bottom: 15px;
+}
+
+.form-or {
+    text-align: center;
+    font-size: 1rem;
+    padding: 1.7rem;
+}
+
+.form-background {
+    width: 100%;
+    background-image: linear-gradient(to bottom, rgba(233, 214, 214, 0.295), rgba(0, 0, 0, 0.436)), url(img/contact.webp);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.thru-social p {
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.171);
+
+    background-color: white;
+    text-align: center;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    gap: 0.5rem;
+    font-size:1.4rem ;
+    border: 2px solid #c4c4c4;
+    cursor: pointer;
+}
+.thru-social p:hover {
+    background-color: #c4c4c4a7;
+    color: white;
+    border-color: white;
+    transition: 0.5s;
+}
+.thru-social p:last-child {
+    background-color: blueviolet;
+    color: white;
+}
+.thru-social p:last-child:hover{
+    background-color: rgb(47, 3, 87);
+
+}
+
+label {
+    color: #111;
+    display: block;
+}
+
+input,
+.sbtBtn {
+    margin: 0.2rem 0rem;
+    display: block;
+    width: 100%;
+    outline: none;
+    border-radius: 8px;
+    border: 2px solid #c4c4c4;
+    padding: 0.52rem 2.5rem;
+    box-shadow:1px 10px 10px rgba(0, 0, 0, 0.171);
+
+}
+
+input:focus {
+    border: 2px solid red;
+}
+
+.name,
+.pass,
+.thru-social {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+
+
+}
+
+.sbtBtn {
+    margin-top: 1rem;
+    color: white;
+    font-size: 1rem;
+    background-color: rgb(231, 70, 70);
+}
+.sbtBtn:hover { background-color: rgb(242, 83, 83);
+transition: 0.5s;
+border-color:white;
+}
+.error {
+    color: rgb(101, 4, 4);
+    margin-left: 0.5rem;
+    height: 30px;
+    font-size: 15px;
+    color: olivedrab;
+}
+
+form div img{
+    position: absolute;
+    z-index: 1;
+   padding:7px;
+}
+.failure, .success{
+    right: 0;
+    opacity: 0;
 }

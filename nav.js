@@ -1,17 +1,5 @@
-const logos = [
-    "gucci.png", "levis.png", "lv.png", "rolex.png", "casio.png"
-]
-// ************ELEMENTS***************8
 // elements for nav
-let currentPositionOfNav= 0;
-// Element FOR SLIDER
-let current = 0
-const slideImg = document.querySelectorAll('.slide');
-const parallax = document.querySelector('.slider-parallax');
-const rightBtn = document.querySelector('.slideRight');
-const leftBtn = document.querySelector('.slideLeft');
-
-
+let currentPositionOfNav = 0;
 // ELEMENTS FOR CART()
 const header = document.querySelector('header');
 const nav = document.querySelector('nav')
@@ -20,82 +8,84 @@ const footer = document.querySelector('footer');
 const cartBtn = document.querySelector('.cart');
 const cartSide = document.querySelector('.cart-side')
 
+// elements for error in submission
+const form = document.querySelector('form');
+const user = document.getElementById('username');
+const lastname = document.getElementById('lastname');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const confirmPassword = document.getElementById('confirmPassword');
 // ELEMENTS FOR bar
 const bars = document.querySelector('.bars i');
 const barSide = document.querySelector('.bar-side')
 
-// ********** event listeners ****************
-
-// ?                 window 
-
-window.addEventListener('DOMContentLoaded', () => {
-    startImage();
-    // loading of date
-    DateRecent();
-    // loading of co logo
-    coLogoLoad(logos);
-})
-
-window.addEventListener('scroll', () => {
-
-// for header
-    let yOffset = window.pageYOffset;
-   
-    if (currentPositionOfNav <yOffset) {
-         header.classList.add('hiding-navbar');
-    } else {
-        header.classList.remove ('hiding-navbar');
-        header.classList.add ('coloring-navbar');
-    }
-    
-    if(yOffset===0) {
-        header.classList.remove ('coloring-navbar')
-
-    }
-    currentPositionOfNav = yOffset;
-// for paralaax
-    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.5}px`);
-
-});
-
-//?        SLIDER LEFT RIGHT BUTTON 
-leftBtn.addEventListener('click', slideLeft);
-rightBtn.addEventListener('click', slideRight);
 
 // ?        cart button
 cartBtn.addEventListener('click', cart);
 bars.addEventListener('click', bar);
 
 
-// ***********functions****************
+window.addEventListener('DOMContentLoaded', () => {
+    // loading of date
+    DateRecent();
+    // loading of co logo
+})
 
+window.addEventListener('scroll', () => {
 
-// *functions for slider
-function startImage() {
-    // making images none in start 
-    slideImg.forEach((slide) => slide.style.display = "none");
-    // now adding one initial image
-    slideImg[current].style.display = "block";
-}
-function slideRight() {
+    // for header
+    let yOffset = window.pageYOffset;
 
-    if (current === slideImg.length - 1) {
-        current = 0;
+    if (currentPositionOfNav < yOffset) {
+        header.classList.add('hiding-navbar');
     } else {
-        current++;
+        header.classList.remove('hiding-navbar');
+        header.classList.add('coloring-navbar');
     }
-    startImage();
-}
-function slideLeft() {
-    if (current === 0) {
-        current = slideImg.length - 1;
-    } else {
-        current--;
-    }
-    startImage();
-}
 
-// *function for cartBtn
+    if (yOffset === 0) {
+        header.classList.remove('coloring-navbar')
+
+    }
+    currentPositionOfNav = yOffset;
+
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submit(user);
+    submit(lastname);
+    submit(email);
+    submit(password);
+    submit(confirmPassword);
+
+});
+let submit = (user) => {
+    const success = user.previousElementSibling;
+
+    const failure = user.previousElementSibling.previousElementSibling;
+    const errorMessage = user.nextElementSibling;
+    console.log(errorMessage);
+    if (user.value.trim() === '') {
+        errorMessage.textContent = `Please enter your ${user.getAttribute('id')}.`;
+        failure.style.opacity = 1;
+        success.style.opacity = 0;
+    } else {
+        failure.style.opacity = 0;
+        errorMessage.textContent = "";
+        success.style.opacity = 1;
+    }
+    if (user.value === password.value ||     user.value ===confirmPassword.value) {
+        if (password.value !== confirmPassword.value) {
+            const errorMessage = password.nextElementSibling;
+            failure.style.opacity = 1;
+            success.style.opacity = 0;
+            errorMessage.innerHTML = "Passwords do not match";
+        }
+    }
+
+
+}
 function cart() {
 
     const crossBtn = document.querySelector('.cross-mark')
@@ -146,27 +136,9 @@ function bar() {
 
 
 }
-//* function for loading co logos
-function coLogoLoad(logos) {
-    const logoContainer = document.querySelector('.logoContainer');
-    logos.forEach((logo) => {
-        const img = document.createElement('img');
-
-        img.src = "/img/" + logo;
-        logoContainer.appendChild(img);
-    })
-
-
-}
-// ************SETTING INTERVALS***********
-
-setInterval(slideRight,3000)
-
 function DateRecent() {
     const date = document.getElementById("date")
 
     date.innerHTML = new Date().getFullYear();
 }
-
-
 
