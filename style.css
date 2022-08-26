@@ -734,6 +734,12 @@ form {
     border: 2px solid rgba(255, 255, 255, 0.148);
     letter-spacing: 1px;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.829);
+    padding: 2rem;
+    width: 40vw;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    letter-spacing: 1px;
 }
 
 form div {
@@ -791,13 +797,13 @@ form div {
     cursor: pointer;
 }
 
+
 .thru-social p:hover {
     background-color: #c4c4c4a7;
     color: white;
     border-color: white;
     transition: 0.5s;
 }
-
 .thru-social p:last-child {
     background-color: blueviolet;
     color: white;
@@ -824,6 +830,7 @@ input,
     padding: 0.52rem 2.5rem;
     box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.171);
     background-color: rgb(238, 226, 226);
+
 }
 
 input:focus {
@@ -853,6 +860,10 @@ input:focus {
     border-color: white;
 }
 
+.sbtBtn:hover { background-color: rgb(242, 83, 83);
+transition: 0.5s;
+border-color:white;
+}
 .error {
     color: rgb(101, 4, 4);
     margin-left: 0.5rem;
@@ -973,4 +984,13 @@ form div img {
 .product img {
     width: 100%;
     height: 200px;
+}
+form div img{
+    position: absolute;
+    z-index: 1;
+   padding:7px;
+}
+.failure, .success{
+    right: 0;
+    opacity: 0;
 }

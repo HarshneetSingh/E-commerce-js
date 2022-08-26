@@ -162,6 +162,10 @@ function coLogoLoad(logos) {
 
 
 }
+// ************SETTING INTERVALS***********
+
+setInterval(slideRight,3000)
+
 function DateRecent() {
     const date = document.getElementById("date")
 
