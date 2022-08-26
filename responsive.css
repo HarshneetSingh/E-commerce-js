@@ -1,6 +1,10 @@
 @media screen and (max-width: 1479px) {
+
     .third {
         top: 500px;
+    }
+    .box{
+        width: 400px;
     }
 }
 @media screen and (max-width:1250px) {
@@ -22,6 +26,7 @@
     }
     .about-blur{
         width: 200px;
+        height: 900px;
         left: 138px;
     }
     .about-info{
@@ -39,7 +44,11 @@
         font-size: 1.3rem;
         margin-left: 20px;
     }
-
+    .hello:nth-child(4) {
+        width: 100%;
+        min-height: 1400px;
+    
+    }
 }
 @media screen and (max-width:1170px) {
     .deals-container {
@@ -53,6 +62,9 @@
     .container3 h2 {
         right: 250px;
         font-size: 11vw;
+    }
+    form{
+        width: 60%;
     }
 }
 
@@ -89,7 +101,7 @@
     .deals-container:nth-child(5) div video {
         width: 100%;
 
-        margin-top: 15vh auto auto auto;
+        margin: 15vh auto auto auto;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -133,13 +145,71 @@
     .about-info hr{
         height: 320px;
     }
+    .hello {
+        min-height: 2800px;
+    }
+    .sh{
+        font-size: 2.5rem;
+        left: 20;
+    }
 }
 
 @media screen and (max-width:800px) {
     .deals-container {
-        flex-direction: column;
+        width: 100%;
+        justify-content: space-between;
     }
+    .deals-container div video{
+        width: 300px; 
+        margin-left: 0px;
+        margin-right: 100;
+    }
+    .vid{
+        margin-left: 70px;
 
+    }
+    .article-header:nth-child(2) h2 ,.second{
+        left: 400px;
+    }
+    .article-inner {
+        top: 440px;
+    }
+    .article-header:nth-child(1) h2{
+        left: 100px;
+        top: 295px;
+    }
+    .article-inner div p{
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .deals-container:nth-child(5) div video {
+        width: 90%;
+    }
+    .third {
+        top: 300px;
+        margin-left: 30px;
+    }
+ 
+    .hello {
+        min-height: 2600px;
+    }
+    .about-head h3{
+        font-size: 7rem;
+    }
+    .about-blur{
+        width: 155px;
+        left: 113px;
+    }
+    .about-info{
+        top: 500px;
+        left :300px;
+    }
+    .about-info div{
+        width: 300px;
+    }
+    .about-info hr{
+        height: 250px;
+    }
     /* setting ul of navebar  */
     nav ul {
         flex-direction: column;
@@ -151,7 +221,7 @@
         align-items: center;
         width: 100%;
     }
-    nav ul li button{
+    nav ul li a{
         
         font-size: 2rem;
     }
@@ -183,7 +253,7 @@
         height: 100vh;
         position: fixed;
         left: 0;
-        background-color: rgb(37, 28, 28);
+        background-color: white;
         top: 0;
         color: black;
     }
@@ -224,6 +294,9 @@
     }
 
     /* setting footer */
+    .footer-col_1 h3{
+        line-height: 30px;
+    }
     .footer-row {
         display: flex;
         flex-direction: column;
@@ -241,9 +314,102 @@
     .slider-info {
         left: 10%;
     }
+    /* form */
+    form{
+        width: 70%;
+    }
+    /* seting images of co logo */
+    .hello:nth-child(4){
+        min-height: 1300px;
+    }
+    .logoContainer img{
+        width: 75px;
+    }
 }
 
+
+@media screen and (max-width:690px){
+    .hello{
+        min-height: 3400px;
+    }
+    .deals-container{
+        flex-direction: column;
+    
+
+    }
+    .deals-container div video{
+        width: 70%;
+        margin: 8rem auto auto
+        auto;
+        display: flex;
+    }
+    .deals-container div{
+        margin: auto;
+    }
+    .article-header:nth-child(1) h2,.article-header:nth-child(2) h2{
+        top: 140px;
+    }
+    .article-header:nth-child(1) h2 span ,.article-header:nth-child(2) h2 span {
+        color: white;
+    }
+    .article-inner{
+        top: 900px;
+    }
+    .article-inner {
+        width: 350px;
+    }
+    .article-inner div{
+        width: 280px;
+
+    }
+ 
+    .article-inner div p {
+        font-size: 1.5rem;
+        line-height: 35px;
+    }
+    .buyNowBtn{
+
+        top: 290px;
+    }
+
+    .second,.article-header:nth-child(2) h2{
+        left: 110;
+
+    }
+    .third{
+        top: 320px;
+        left: 40px;
+    }
+    .third div a{
+        top: 200px;
+        font-size: 1.3rem;
+    }
+    .container3 h2{
+        font-size: 15vw;
+        right: 25vw;
+    }
+    .about-head h3{
+        font-size: 6rem;
+    }
+    .about-info {
+        top: 496px;
+        left: 278px;
+        width: 200px;
+    }
+    .article-inner div p {
+        font-size: 1.1rem;
+        line-height: 26px;
+         width: 230px;
+    }
+    .about-blur {
+        width: 138px;
+        left: 99px;
+    }
+}
 @media screen and (max-width:590px) {
+    .hello{
+        min-height:3300px ;
+    }
     .slider-info p {
         font-size: 2rem;
     }
@@ -255,7 +421,9 @@
     .slide1 {
         background-image: url(/img/man.jpg);
     }
-
+    .slide2{
+        background-image: url(img/manWoman2.jpg);
+    }
     .slide3 {
         background-image: url(/img/pexels-polina-tankilevitch-6939095\ \(1\).jpg);
 
@@ -265,10 +433,97 @@
         color: white;
         border: 2px solid white;
     }
+    form{
+        width: 80%;
+    }
+    .deals-container div video{
+        width: 80%;
+    }
+        .article-inner{
+        left: 13vw;
+    }
+    .article-inner div a{
+        width: 100%;
+        text-align: center;
+        top: 270px;
+    }
+    
+    .article-header:nth-child(1) h2,.article-header:nth-child(2) h2{
+        top: 140px;
+        left: 0;
+        margin-left: 10vw;
+        font-size: 7vw;
+    }
+    .third{
+        top:40vh ;
+        left: 40px;
+    }
+    .third div a{
+        top: 200px;
+        font-size: 1.3rem;
+    }
+    .deals-heading{
+        font-size: 2.5rem;
+    }
+    .sh{
+        font-size: 2.4rem;
+        left: 20;
+        padding: 0;
+        width: 72vw;
+        padding-left: 0.4rem;
+    }
+
+    .about-info {
+        top: 500px;
+        left: 258px;
+        width: 200px;
+    }
+    .about-info div a {
+        top: 350;
+    }
+    .about-blur{
+        height: 800px;
+    }
+    .about-info div a {
+        top: 350;
+    }
 }
+@media screen and (max-width:525px) {
+    .hello{
+        min-height:3100px ;
 
+    }
+    .article-inner{
+        top: 820px;
+    }
+    .third{
+        top:43vh ;
+        left: 40px;
+    }
+    .third div a{
+        top: 200px;
+        font-size: 1rem;
+    }
+    .about-head h3{
+        font-size: 4rem;
+    }
+    .about-info {
+        top: 496px;
+        left: 208px;
+    }
+  
+    .about-blur {
+        width: 95px;
+        left: 75px;
+    }
+}
 @media screen and (max-width:500px) {
-
+    .hello{
+       min-height: 3200px;
+    }
+    .thru-social {
+        row-gap: 1rem;
+    }
     .slider-info p {
         font-size: 2rem;
     }
@@ -276,15 +531,62 @@
     .slider-info span {
         font-size: 3rem;
     }
-
+    form{
+        margin-top: 7rem;
+        margin-bottom: 5rem;
+        width: 95%;
+    }
+   
+    .name,.pass,.thru-social{
+        grid-template-columns: 1fr;
+    }
+    .deals-heading{
+        font-size: 2rem;
+        left: 20px;
+    }
+    .article-inner{
+        top: 660px;
+        bottom: 50;
+    }
+    
+    .third{
+        top:600 ;
+        left: 25px;
+    }
+    .third div a{
+        color:white;
+        border-color: white;
+        font-size: 1rem;
+    }
+    .third div a:hover{
+        color: black;
+        background-color: white;
+    }
+    .about-head h3{
+        font-size: 4rem;
+    }
+    .about-info {
+        top: 506px;
+        left: 180px;
+    }
+  
+    .about-blur {
+        width: 95px;
+        left: 75px;
+    }
+    .logoContainer img{
+        width: 50px;
+    }
 }
 
 @media screen and (max-width:450px) {
-
+    .hello{
+        min-height: 3300px;
+    }
 
 
     .slider-info p {
-        font-size: 2rem;
+        font-size: 2.3rem;
     }
 
     .slider-info span {
@@ -294,9 +596,80 @@
 
     }
 
-
-
     .info-btn:hover {
         color: black;
+    }
+    .deals-container div video{
+        width: 98%;
+        border-radius: 15px;
+    } 
+    .article-inner{
+        top: 780px;
+        left: 15;  width: 300px;
+    }
+    .article-header:nth-child(1) h2, .article-header:nth-child(2) h2{
+        font-size: 8vw;
+        margin-left: 5vw;
+    }
+
+    .article-inner div{
+        width: 260px;
+
+    }
+    .third {
+        top: 600px;
+    }
+    .box{
+        width: 300px;
+    }
+    .about-head h3{
+        font-size: 3rem;
+    }
+    .about-info {
+        top: 506px;width: 200px;
+        left: 150px;
+    }
+  
+    .about-blur {
+        width: 75px;
+        left: 62px;
+    }
+
+
+}
+@media screen and (max-width:400px){
+    .hello{
+        min-height:3150px ;
+    }
+    .sh{
+        width:80vw;
+    }
+     .box{
+        width: 280px;
+    }
+    .about-head h3{
+        font-size: 3rem;
+        left: 0;
+    }
+
+  
+    .about-blur {
+        left: 35;
+        height: 600px;
+        width: 70px;
+    }
+    .about-info div p{
+        margin-left: 10;
+        width: 185px;
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width:370px){
+    .article-inner{
+        top: 680px;
+    }    .about-info {
+        top: 300px;
+        width: 183px;
+        left: 110px;
     }
 }

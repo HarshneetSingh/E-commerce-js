@@ -1,19 +1,11 @@
-const logos = [
-    "gucci.png", "levis.png", "lv.png", "rolex.png", "casio.png"
-]
-// ************ELEMENTS***************8
-// elemet for top link 
+
+// element for top link
 const topLinks = document.querySelector(".up-Scroller"); 
+
+
 // elements for nav
+
 let currentPositionOfNav = 0;
-// Element FOR SLIDER
-let current = 0
-const slideImg = document.querySelectorAll('.slide');
-const parallax = document.querySelector('.slider-parallax');
-const rightBtn = document.querySelector('.slideRight');
-const leftBtn = document.querySelector('.slideLeft');
-
-
 // ELEMENTS FOR CART()
 const header = document.querySelector('header');
 const nav = document.querySelector('nav')
@@ -21,21 +13,28 @@ const main = document.querySelector('main')
 const footer = document.querySelector('footer');
 const cartBtn = document.querySelector('.cart');
 const cartSide = document.querySelector('.cart-side')
+// elements for error in submission
+const form = document.querySelector('form');
+const user = document.getElementById('username');
+const lastname = document.getElementById('lastname');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const confirmPassword = document.getElementById('confirmPassword');
 
 // ELEMENTS FOR bar
 const bars = document.querySelector('.bars i');
 const barSide = document.querySelector('.bar-side')
 
-// ********** event listeners ****************
 
-// ?                 window 
+// ?        cart button
+cartBtn.addEventListener('click', cart);
+bars.addEventListener('click', bar);
+
 
 window.addEventListener('DOMContentLoaded', () => {
-    startImage();
     // loading of date
     DateRecent();
     // loading of co logo
-    coLogoLoad(logos);
 })
 
 window.addEventListener('scroll', () => {
@@ -55,51 +54,12 @@ window.addEventListener('scroll', () => {
 
     }
     currentPositionOfNav = yOffset;
-    // for paralaax
-    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.5}px`);
+    // toplink
+    yOffset>100? topLinks.classList.add('show-scroller'):topLinks.classList.remove('show-scroller')
 
-    // for top link 
-    yOffset>700? topLinks.classList.add('show-scroller'):topLinks.classList.remove('show-scroller')
 });
 
-//?        SLIDER LEFT RIGHT BUTTON 
-leftBtn.addEventListener('click', slideLeft);
-rightBtn.addEventListener('click', slideRight);
 
-// ?        cart button
-cartBtn.addEventListener('click', cart);
-bars.addEventListener('click', bar);
-
-
-// ***********functions****************
-
-
-// *functions for slider
-function startImage() {
-    // making images none in start 
-    slideImg.forEach((slide) => slide.style.display = "none");
-    // now adding one initial image
-    slideImg[current].style.display = "block";
-}
-function slideRight() {
-
-    if (current === slideImg.length - 1) {
-        current = 0;
-    } else {
-        current++;
-    }
-    startImage();
-}
-function slideLeft() {
-    if (current === 0) {
-        current = slideImg.length - 1;
-    } else {
-        current--;
-    }
-    startImage();
-}
-
-// *function for cartBtn
 function cart() {
 
     const crossBtn = document.querySelector('.cross-mark')
@@ -110,16 +70,16 @@ function cart() {
     // making backgroung opacity increases
 
     nav.style.opacity = '0.4';
-    main.style.opacity = '0.4';
-    footer.style.opacity = '0.4';
+    // main.style.opacity = '0.4';
+    // footer.style.opacity = '0.4';
 
 
     crossBtn.addEventListener('click', () => {
 
         // making opacity normal
         nav.style.opacity = '1';
-        main.style.opacity = '1';
-        footer.style.opacity = '1';
+        // main.style.opacity = '1';
+        // footer.style.opacity = '1';
 
         // adding cart-side-not-active
         cartSide.classList.add('cart-side-not-active')
@@ -150,28 +110,43 @@ function bar() {
 
 
 }
-//* function for loading co logos
-function coLogoLoad(logos) {
-    const logoContainer = document.querySelector('.logoContainer');
-    logos.forEach((logo) => {
-        const img = document.createElement('img');
-
-        img.src = "/img/" + logo;
-        logoContainer.appendChild(img);
-    })
-
-
-}
 function DateRecent() {
     const date = document.getElementById("date")
 
     date.innerHTML = new Date().getFullYear();
 }
-// ************SETTING INTERVALS***********
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submit(user);
+    submit(lastname);
+    submit(email);
+    submit(password);
+    submit(confirmPassword);
 
-setInterval(slideRight, 5000)
+});
+let submit = (user) => {
+    const success = user.previousElementSibling;
+
+    const failure = user.previousElementSibling.previousElementSibling;
+    const errorMessage = user.nextElementSibling;
+    console.log(errorMessage);
+    if (user.value.trim() === '') {
+        errorMessage.textContent = `Please enter your ${user.getAttribute('id')}.`;
+        failure.style.opacity = 1;
+        success.style.opacity = 0;
+    } else {
+        failure.style.opacity = 0;
+        errorMessage.textContent = "";
+        success.style.opacity = 1;
+    }
+    if (user.value === password.value ||     user.value ===confirmPassword.value) {
+        if (password.value !== confirmPassword.value) {
+            const errorMessage = password.nextElementSibling;
+            failure.style.opacity = 1;
+            success.style.opacity = 0;
+            errorMessage.innerHTML = "Passwords do not match";
+        }
+    }
 
 
-
-
-
+}
