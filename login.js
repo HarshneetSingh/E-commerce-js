@@ -70,16 +70,16 @@ function cart() {
     // making backgroung opacity increases
 
     nav.style.opacity = '0.4';
-    // main.style.opacity = '0.4';
-    // footer.style.opacity = '0.4';
+    main.style.opacity = '0.4';
+    footer.style.opacity = '0.4';
 
 
     crossBtn.addEventListener('click', () => {
 
         // making opacity normal
         nav.style.opacity = '1';
-        // main.style.opacity = '1';
-        // footer.style.opacity = '1';
+        main.style.opacity = '1';
+        footer.style.opacity = '1';
 
         // adding cart-side-not-active
         cartSide.classList.add('cart-side-not-active')
