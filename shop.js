@@ -1,12 +1,3 @@
-const productArticles = [{
-    id: 1,
-    productName: 'hello world',
-    productDetails: 'lorem ipsum dolor sit amet',
-    price: 10,
-    Img: 'img/man.jpg',
-    category: 'MENS',
-},
-]
 
 // element for top link
 const topLinks = document.querySelector(".up-Scroller");
@@ -28,21 +19,24 @@ const bars = document.querySelector('.bars i');
 const barSide = document.querySelector('.bar-side')
 
 // ELEMENTS FOR PRODUCT and buttons
+let count=0;
 const productContainer = document.querySelector('.products');
 const productButton = document.querySelector('.product-ul');
+const cartCount= document.querySelector('.cart-count');
 // ?        cart button
 cartBtn.addEventListener('click', cart);
 bars.addEventListener('click', bar);
 
 
+
+// event listeners 
 window.addEventListener('DOMContentLoaded', () => {
     // loading of date
-    // DateRecent();
+    DateRecent();
     // loading of co logo
-    productLoader(productArticles);
-    pListLoader();
+    const product = new products();
+    product.getProducts()
 })
-
 window.addEventListener('scroll', () => {
 
     // for header
@@ -67,8 +61,8 @@ window.addEventListener('scroll', () => {
     yOffset > 400 ? topLinks.classList.add('show-scroller') : topLinks.classList.remove('show-scroller')
 
 });
-
-
+// ***************functions***************
+// ******cart onclick
 function cart() {
 
     const crossBtn = document.querySelector('.cross-mark')
@@ -98,6 +92,7 @@ function cart() {
 
 
 }
+//******** */ bars onclick
 function bar() {
 
     const crossBtn = document.createElement('i');
@@ -119,15 +114,33 @@ function bar() {
 
 
 }
+// ********date loader 
 function DateRecent() {
     const date = document.getElementById("date")
 
     date.innerHTML = new Date().getFullYear();
 }
+
+// ********products loader
+class products {
+    async getProducts() {
+        try {
+
+            const productFile = await fetch('products.json');
+            const response = await productFile.json();
+            productLoader(response.products)
+            pListLoader(response.products)
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
 function productLoader(menu) {
+    console.log(menu)
     let displayProduct = menu.map((pDetails) => {
 
-        return `<article class="product">
+        return `<article class="product" id="${pDetails.id}">
         <div><img src=${pDetails.Img} alt=""></div>
         <div class="product-description">
             <h4>${pDetails.productName}</h4>
@@ -135,7 +148,7 @@ function productLoader(menu) {
             <p>${pDetails.productDetails}</p>
             <div class="product-price">
                 <span class="amount">$${pDetails.price}</span >
-                <button>BUY NOW <i class="fa-solid fa-cart-shopping "></i></button>
+                <button class="addToCart">BUY NOW <i class="fa-solid fa-cart-shopping "></i></button>
             </div>
 
 
@@ -143,28 +156,47 @@ function productLoader(menu) {
 
     </article>`
     });
-    console.log(displayProduct)
 
     displayProduct = displayProduct.join('');
-    console.log(displayProduct)
-    // here if we not put the '' then it will throw error in page as (,) will be added in it as 
+    // here if we not put the '' then it will throw error in page as (,) will be added in it as
+    
     productContainer.innerHTML = displayProduct;
+    // adding listeneres to the products
+    btnListener()
 }
-function pListLoader() {
-    let filteredBtn = productArticles.reduce((acc,curr) => {
-        if (!acc.includes(curr)) {
-           acc.push(curr.category);
-        } 
+//********  button list loader
+function pListLoader(products) {
+    let filteredBtn = products.reduce((acc, curr) => {
+        if (!acc.includes(curr.category)) {
+            acc.push(curr.category);
+        }
         return acc
-    },['All']).map((btn)=>{
-const li = document.createElement('li');
-    const button = document.createElement('button');
-    return `<li><button>${btn}</button></li>`
+    }, ['All']).map((btn) => {
+        const li = document.createElement('li');
+        const button = document.createElement('button');
+        return `<li><button>${btn}</button></li>`
     });
-    // product.forEach(element => {
-    console.log(filteredBtn);
-    // });
-    filteredBtn = filteredBtn.join(' '); 
+    filteredBtn = filteredBtn.join(' ');
     productButton.innerHTML = filteredBtn;
 
 }
+function btnListener(){
+    const addToCart = document.querySelectorAll('.addToCart');
+    addToCart.forEach((btn) => {
+    btn.addEventListener('click', function onclick(e){
+        // ****increaing count on click and adding its innerhtml****
+        const element = e.target;
+                        
+        element.innerHTML=`IN CART  <img src="https://img.icons8.com/material-outlined//008000/ok--v1.png" style="width:14px; height:14px; "/> `;
+        count++;
+        cartCount.textContent = `${count}`;
+        // sending the product to the cart display
+        const chosenPoduct=e.target.parentElement.parentElement.parentElement.id
+
+        console.log(chosenPoduct);
+        // removing event listener
+        btn.removeEventListener('click',onclick);
+    });
+})
+}
+

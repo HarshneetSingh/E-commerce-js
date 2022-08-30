@@ -1,0 +1,27 @@
+{
+    "products": [{
+        "id": 1,
+        "productName": "hello world",
+        "productDetails": "lorem ipsum dolor sit amet",
+        "price": 10,
+        "Img": "img/man.jpg",
+        "category": "MENS"
+    },
+    {
+        "id": 1,
+        "productName": "hello world",
+        "productDetails": "lorem ipsum dolor sit amet",
+        "price": 10,
+        "Img": "img/man.jpg",
+        "category": "MENS"
+    },{
+        "id": 3,
+        "productName": "hello world",
+        "productDetails": "lorem ipsum dolor sit amet",
+        "price": 10,
+        "Img": "img/man.jpg",
+        "category": "MENS"
+    }]
+
+    
+}
