@@ -8,7 +8,7 @@
         "category": "MENS"
     },
     {
-        "id": 1,
+        "id": 2,
         "productName": "hello world",
         "productDetails": "lorem ipsum dolor sit amet",
         "price": 10,
@@ -20,7 +20,7 @@
         "productDetails": "lorem ipsum dolor sit amet",
         "price": 10,
         "Img": "img/man.jpg",
-        "category": "MENS"
+        "category": "WOMENS"
     }]
 
     

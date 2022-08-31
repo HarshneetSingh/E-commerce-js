@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <header>
+    <header   onmouseover="this.style.boxShadow='none';"  onmouseout="this.style.background='transparent';">
         <nav>
             <aside class="bar-side bar-side-not-active"></aside>
             <div class="bars">
@@ -28,23 +28,34 @@
                 <h2>GS</h2>
                 <p>GENTLEMEN'S STREET</p>
             </div>
-            <i class="fa-solid fa-cart-shopping cart"><div class="cart-count">0</div></i>
+            <i class="fa-solid fa-cart-shopping cart">
+                <div class="cart-count">0</div>
+            </i>
         </nav>
-        <aside class="cart-side cart-side-not-active"><i class="fa-solid fa-xmark cross-mark"></i></aside>
+        <aside class="cart-side cart-side-not-active">
+            <i class="fa-solid fa-xmark cross-mark"></i>
+            <section class="your-cart-section">
+                <h2>Your Cart</h2>
+                <div class="cart-articles">
+                </div>
+                <h3 class="cart-ttl-div">Your Total : $ <span class="cart-ttl"> </span></h3>
+                <button class="clear-cart-button">CLEAR CART</button>
+            </section>
+        </aside>
 
     </header>
     <main>
-         <section class="product-details">
+        <section class="product-details">
             <h3>PRODUCTS</h3>
-             <ul class="product-ul"> 
+            <ul class="product-ul">
             </ul>
-        </section> 
+        </section>
         <section class="products-wrapper">
             <div class="products">
             </div>
 
         </section>
-
+        
     </main>
     <footer class="footerForShop">
 

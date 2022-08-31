@@ -34,6 +34,7 @@ header {
     padding: 0rem 1rem 0.5rem 1rem;
     letter-spacing: 3px;
     transition: transform 1s;
+    
 }
 
 .hiding-navbar {
@@ -50,6 +51,7 @@ header:hover {
 
 nav,
 ul {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -978,15 +980,16 @@ form div img {
 
 .product-details ul button:hover {
     transition: 0.5s;
-    color: rgb(245 255 221);
+    color: #f5ffdd;
 }
 
 
 
 .products-wrapper {
     padding-top: 250px;
-    background-color: rgba(28, 26, 26, 0.144);
+    background-color: rgba(28, 26, 26, 0.09);
     width: 100%;
+    min-height: 110vh;
 }
 
 .products {
@@ -1065,19 +1068,13 @@ form div img {
     position: relative;
     
 }
-
-.product-price button i {
-    
-    color: rgb(7, 7, 7);
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.142);
-}
-
 .product-price button:hover {
     color: rgb(249, 253, 239);
     background-color: rgb(195, 184, 184);
     transition: 0.5s;
     border: 1px solid white;
 }
+
 .product-price button img{
     position: absolute;
     top: 11;
@@ -1085,4 +1082,84 @@ form div img {
     display: grid;
     opacity: 0.7;
     place-items: center;
+}
+
+.your-cart-section{
+    width: 90%;
+    margin: auto;
+    letter-spacing: 0px;
+}
+.your-cart-section  {
+    text-align: center;
+}
+.your-cart-article{
+    margin-top: 50px;
+    display: grid;
+    column-gap:1.5rem ;
+    grid-template-columns: auto 1fr auto ;
+}
+.your-cart-section h2{
+    font-size: 1.8rem;
+}
+.your-cart-article img{
+    width: 95px;
+    height: 70px;
+    box-shadow:0 0 140px #787777;
+    object-fit: cover;
+}
+.article-info{
+    position: relative;
+    text-align: left;
+    margin-top: 0px;
+}
+.article-name{
+    font-size: 1.1rem;
+    color: rgb(25, 20, 20);
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+.article-price{
+    margin-top: 4px;
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+}
+.article-remove{
+    position: absolute;
+    bottom: 2;
+    color: #787777;
+    font-size: 15px;
+}
+.article-remove:hover{
+    color: rgb(56, 22, 22);
+    transition: 0.5s;
+}
+.cart-ttl-div{
+    margin-top: 30px;
+}
+.clear-cart-button{
+    margin-top: 15px;
+    padding: 0.8rem 3rem;
+    border: 2px solid transparent;
+    transition: 0.6s;
+    
+}
+.clear-cart-button:hover{
+    color: #ffffff;
+    transition: 0.6s;
+    border: 2px solid #c4c4c4;
+    background-color: rgba(12, 0, 0, 0.811);
+}
+.fa-angle-up{
+   margin-top: 10px; 
+}
+.fa-angle-up, .fa-angle-down{
+    color: #555555;
+    
+    font-size: 18px;
+}
+.fa-angle-down:hover, .fa-angle-up:hover{
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
+    box-shadow: 0 0 90px black;
 }
