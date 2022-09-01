@@ -19,9 +19,11 @@ const bars = document.querySelector('.bars i');
 const barSide = document.querySelector('.bar-side')
 
 // !for manipulating  product  in btn and  in cart
-const cartArticlesContainer = document.querySelector('.cart-articles');
 let chosenPoduct = [];
+let itemcount
 let amount = 0;
+const cartArticlesContainer = document.querySelector('.cart-articles');
+
 const cartTtlDiv = document.querySelector('.cart-ttl');
 const clearCartBtn = document.querySelector('.clear-cart-button');
 // !ELEMENTS FOR PRODUCT and buttons
@@ -29,7 +31,6 @@ let count = 0;
 const productContainer = document.querySelector('.products');
 const productButton = document.querySelector('.product-ul');
 const cartCount = document.querySelector('.cart-count');
-
 
 // !        cart button
 cartBtn.addEventListener('click', cart);
@@ -83,28 +84,42 @@ function btnListener() {
     const addToCart = document.querySelectorAll('.addToCart');
 
     addToCart.forEach((btn) => {
-        btn.addEventListener('click', onClick);
+        btn.addEventListener('click', onlickCondition);
     })
 }
 // ! *******************************************functions*******************************************************
 // *******btnListener function*********
-function onClick(e) {
-    // ****increaing count on click and adding its innerhtml****
+function onlickCondition(e) {
     const element = e.target;
-    element.style.background = "red";
-    element.style.color = "white";
 
-    element.innerHTML = `IN CART  <img src="https://img.icons8.com/material-outlined//111/ok--v1.png" style="width:14px; height:14px; "/> `;
-    count++;
-    cartCount.textContent = `${count}`;
-    // sending the product to the cart display
-    chosenPoduct.push(e.target.parentElement.parentElement.parentElement.id)
-    elementsForCart(chosenPoduct)
-    // removing event listener
-    element.removeEventListener('click', onclick);
-    amount += JSON.parse(previousElemDetail(e));
-    cartTtlDiv.textContent = amount;
+    if (element.getAttribute('class') === 'addToCart') {
+        onClick(element)
+
+    } else {
+        // element.parentElement.getAttribute('class') === 'addToCart  if clicked on img
+        onClick(element.parentElement)
+
+    }
+
 };
+function onClick(eTarget) {
+    const element = eTarget;
+    element.style.backgroundColor = "red";
+    element.style.color = "white";
+    element.innerHTML = `IN CART  <img src="https://img.icons8.com/material-outlined/24/111/ok--v1.png" style="width:14px; height:14px; "/> `;
+
+    // ****increaing count on click and adding its innerhtml**** 
+    cartCount.textContent = ++count;
+
+    // sending the product to the cart display
+    chosenPoduct.push(element.parentElement.parentElement.parentElement.id)
+    elementsForCart(chosenPoduct)
+
+    amount += JSON.parse(previousElemDetail(element));
+    cartTtlDiv.textContent = amount;
+    // removing event listener
+    element.removeEventListener('click', onlickCondition);
+}
 // ********products loader*****
 class products {
     async getProducts() {
@@ -130,7 +145,7 @@ function productLoader(menu) {
             <p>${pDetails.productDetails}</p>
             <div class="product-price">
                 <span class="amount">$${pDetails.price}</span >
-                <button class="addToCart">BUY NOW <i class="fa-solid fa-cart-shopping "></i></button>
+                <button class="addToCart">BUY NOW  <i class="fa-solid fa-cart-shopping "></i></button>
             </div>
 
 
@@ -206,6 +221,7 @@ function ccL(products) {
 
     let content = products.map(product => {
         // for adding ttl to product list
+         itemcount = 1;
 
 
         return `<article class="your-cart-article" id="${product.id}">
@@ -215,30 +231,30 @@ function ccL(products) {
             <p class="article-price">$${product.price}</p>
             <p class="article-remove">remove</p>
         </div>
-        <div>
-            <i class="fa-solid fa-angle-up"></i>
-            <p class="item-count">1</p>
-            <i class="fa-solid fa-angle-down"></i>
+        <div class="Arrow">
+            <i class="fa-solid fa-angle-up "></i>
+            <p class="item-count">${1}</p>
+            <i class="fa-solid fa-angle-down "></i>
         </div>
     </article>`
 
     })
+    // calling removing button
 
     content = content.join('');
     cartArticlesContainer.innerHTML = content;
-
-    // calling removing button
-    removeCartContent(products);
-    incDecOFproduct();
+    // calling function for inc dec of an element
+    incDecOFproduct(itemcount);
+    removeCartContent();
 }
 // *****remove and arrow btns*********
-function removeCartContent(products) {
+function removeCartContent() {
     const cartArticleRemove = document.querySelectorAll('.article-remove');
     cartArticleRemove.forEach(articalRmvBtn => {
         articalRmvBtn.addEventListener('click', (e) => {
             const parentElement = e.target.parentElement.parentElement;
             const parentElementId = parentElement.id;
-
+            const quantityOfProduct= e.target.parentElement.parentElement.querySelector('.item-count').textContent;
             //! using delete method to remove the id from chooseProducts
             chosenPoduct = chosenPoduct.filter(elemID => {
                 if (!elemID == parentElementId) {
@@ -247,69 +263,124 @@ function removeCartContent(products) {
             });
 
             // !decrementing the count of the cart TTL NUMBER
-            count--;
-            cartCount.textContent = `${count}`;
+            cartCount.textContent = count -quantityOfProduct;
 
-
-            //! deducting the amount from the cart TTL NUMBER
-            let removingElementPrice = previousElemDetail(e)
-            amount -= removingElementPrice;
+            //! deducting the amount from the cart TTL number quanties price
+            let removingElementPrice = previousElemDetail(e.target)
+            amount -= JSON.parse(removingElementPrice*quantityOfProduct);
             cartTtlDiv.textContent = amount;
 
             // !removing the child element
             cartArticlesContainer.removeChild(parentElement)
             // ! adding event listeners again in the product btn 
-            const FILTER_product_From_UserCart_selection = products.filter(elemID => {
-                if (elemID.id == parentElementId) {
-                    return elemID;
-                }
-            });
-            const product = document.querySelectorAll('.product');
-            const filtered_product = product.forEach(item => {
 
-                if (elemID.id == item.id) {
-                    return item;
-                }
-            })
-            console.log(filtered_product)
+            // !bringing the displayed products
+            reAssignEventListeners(parentElementId)
+        })
+    })
+    // ******removing all product from the cart ******
+    clearCartBtn.addEventListener('click', (e) => {
+        const cartArticles = document.querySelectorAll('.your-cart-article');
+
+        cartArticles.forEach((item) => {
+            cartArticlesContainer.removeChild(item);
+        })
+        // ! making chosenproducts=0; 
+        chosenPoduct = [];
+        //!  making cart count to 0
+        count = 0;
+        cartCount.textContent = count;
+        //! making cart ttl to 0
+        amount = 0;
+        cartTtlDiv.textContent = amount;
+        // ! adding event listeners again in the product btn 
+        const addToCart = document.querySelectorAll('.addToCart');
+
+        addToCart.forEach((btn) => {
+            // ? Adding event listener again to the removed btn 
+            aRmvElemListener(btn)
+
         })
     })
 }
-// removing all product from the cart 
+// ******* reassigning event listener to the remove products****
+function reAssignEventListeners(parentElementId) {
+    const product = document.querySelectorAll('.product');
+    const filtered_product = Array.from(product).filter(item => {
+        // here product is an nodelist we cant apply filter on nodelist so we made the nodelist to array 
+        // with( Array.from(product)) 
 
-clearCartBtn.addEventListener('click', (e) => {
-    const cartArticles = document.querySelectorAll('.your-cart-article');
+        // ? and item.getAttribute('id') => products id 
 
-    cartArticles.forEach((item) => {
-        cartArticlesContainer.removeChild(item);
+        if (parentElementId === item.getAttribute('id')) {
+            return item;
+        }
     })
-    // ! making chosenproducts=0; 
-    chosenPoduct = [];
-    //!  making cart count to 0
-    count = 0;
-    cartCount.textContent = `${count}`;
-    //! making cart ttl to 0
-    amount = 0;
-    cartTtlDiv.textContent = amount;
-    // ! adding event listeners again in the product btn 
-    const addToCart = document.querySelectorAll('.addToCart');
-
-    addToCart.forEach((btn) => {
-        btn.style.background = "transparent";
-        btn.style.color = "black";
-        btn.innerHTML = `BUY NOW <i class="fa-solid fa-cart-shopping "></i>`;
-        btn.addEventListener('click', onClick);
-
-    })
-})
+    const btnOFfilterdProduct = filtered_product[0].querySelector('.addToCart');
+    // ? Adding event listener again to the removed btn 
+    aRmvElemListener(btnOFfilterdProduct)
+}
 
 // ******increading and decrsing of the product******
-function incDecOFproduct(id) {
+function incDecOFproduct(itemcount) {
+
+    const arrordiv = document.querySelectorAll('.Arrow');
+
+    arrordiv.forEach((arrors) => {
+        arrors.addEventListener('click', (e) => {
+            const parentElement = e.target.parentElement.parentElement
+            const parentElementId = e.target.parentElement.parentElement.id
+            const itemCountDom = e.target.parentElement.querySelector('.item-count');
+            let previousElemDetailPrice = previousElemDetail(e.target.parentElement.previousElementSibling.lastElementChild);
+
+            if (e.target.classList.contains('fa-angle-up')) {
+                // !increasing count of products in the product
+                itemCountDom.textContent = ++itemcount;
+
+                //?  increasing count of products in the cart COUNT 
+
+                cartCount.textContent = ++count;
+
+                // ! increasing amount
+                amount += JSON.parse(previousElemDetailPrice);
+                cartTtlDiv.textContent = amount;
+            } else if (e.target.classList.contains('fa-angle-down')) {
+
+                // !decreasing count of products in the product
+                itemcount--;
+                itemCountDom.textContent = itemcount;
+
+                //?  increasing count of products in the cart COUNT
+                cartCount.textContent = --count;
+
+
+                //! deducting the amount from the cart TTL NUMBER
+                amount -= previousElemDetailPrice;
+                cartTtlDiv.textContent = amount;
+                //?  increasing count of products in the cart COUNT 
+
+                cartCount.textContent = --count;
+                // ? if item count ==0
+                if (itemcount === 0) {
+                    reAssignEventListeners(parentElementId)
+
+                    // !removing the child element
+                    cartArticlesContainer.removeChild(parentElement)
+
+                }
+
+
+            } else {
+                return
+            }
+        })
+
+    })
 
 }
 // *****finding prev elem details ********
 function previousElemDetail(e) {
-    let removingElementPrice = e.target.previousElementSibling.textContent;
+    let removingElementPrice = e.previousElementSibling.textContent;
     removingElementPrice = removingElementPrice.slice(1)
     return removingElementPrice;
 }
@@ -371,4 +442,14 @@ function DateRecent() {
     const date = document.getElementById("date")
 
     date.innerHTML = new Date().getFullYear();
+}
+// ******** Adding event listener again to the removed btn ******
+function aRmvElemListener(btn) {
+    btn.innerHTML = `BUY NOW <i class="fa-solid fa-cart-shopping "></i>`;
+    btn.style.backgroundColor = 'transparent';
+    btn.style.color = 'black';
+    console.log(btn);
+    btn.addEventListener('click', onlickCondition);
+
+
 }

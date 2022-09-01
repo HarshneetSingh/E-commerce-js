@@ -1056,7 +1056,7 @@ form div img {
     justify-content: space-between;
 }
 
-.product-price button {
+.addToCart {
     float: right;
     letter-spacing: 2.5px;
     background-color: transparent;
@@ -1068,20 +1068,22 @@ form div img {
     position: relative;
     
 }
-.product-price button:hover {
+.addToCart:hover {
     color: rgb(249, 253, 239);
-    background-color: rgb(195, 184, 184);
+    background-color: rgb(208, 182, 182);
     transition: 0.5s;
     border: 1px solid white;
 }
 
-.product-price button img{
+.addToCart img{
     position: absolute;
     top: 11;
     right: 5;
     display: grid;
     opacity: 0.7;
     place-items: center;
+    width: 15px;
+    height: 14px;
 }
 
 .your-cart-section{
