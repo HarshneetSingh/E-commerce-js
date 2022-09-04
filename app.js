@@ -3,29 +3,35 @@ const logos = [
 ]
 // ************ELEMENTS***************8
 // elemet for top link 
-const topLinks = document.querySelector(".up-Scroller"); 
+const topLinks = QS(".up-Scroller"); 
 // elements for nav
 let currentPositionOfNav = 0;
 // Element FOR SLIDER
 let current = 0
-const slideImg = document.querySelectorAll('.slide');
-const parallax = document.querySelector('.slider-parallax');
-const rightBtn = document.querySelector('.slideRight');
-const leftBtn = document.querySelector('.slideLeft');
+const slideImg = QSA('.slide');
+const parallax = QS('.slider-parallax');
+const rightBtn = QS('.slideRight');
+const leftBtn = QS('.slideLeft');
 
 
 // ELEMENTS FOR CART()
-const header = document.querySelector('header');
-const nav = document.querySelector('nav')
-const main = document.querySelector('main')
-const footer = document.querySelector('footer');
-const cartBtn = document.querySelector('.cart');
-const cartSide = document.querySelector('.cart-side')
+const header = QS('header');
+const nav = QS('nav')
+const main = QS('main')
+const footer = QS('footer');
+const cartBtn = QS('.cart');
+const cartSide = QS('.cart-side')
 
 // ELEMENTS FOR bar
-const bars = document.querySelector('.bars i');
-const barSide = document.querySelector('.bar-side')
-
+const bars = QS('.bars i');
+const barSide = QS('.bar-side')
+// **** functions for loading qs and qsa
+function QS(classORid){
+    return document.querySelector(classORid);
+}
+function QSA(classORid){
+    return document.querySelectorAll(classORid);
+}
 // ********** event listeners ****************
 
 // ?                 window 
@@ -56,7 +62,7 @@ window.addEventListener('scroll', () => {
     }
     currentPositionOfNav = yOffset;
     // for paralaax
-    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.5}px`);
+    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.7}px`);
 
     // for top link 
     yOffset>700? topLinks.classList.add('show-scroller'):topLinks.classList.remove('show-scroller')
@@ -102,7 +108,7 @@ function slideLeft() {
 // *function for cartBtn
 function cart() {
 
-    const crossBtn = document.querySelector('.cross-mark')
+    const crossBtn = QS('.cross-mark')
 
     // adding class to show cart
     cartSide.classList.add('cart-side-active');
@@ -138,11 +144,12 @@ function bar() {
     barSide.classList.add('bar-side-active');
     barSide.classList.remove('bar-side-not-active');
     header.classList.add('bar-content-show');
+    cartBtn.style.display="none"
 
     crossBtn.addEventListener('click', () => {
         barSide.removeChild(crossBtn);
         header.classList.remove('bar-content-show');
-
+        cartBtn.style.display="block"
 
         barSide.classList.add('bar-side-not-active')
         barSide.classList.remove('bar-side-active')
@@ -152,7 +159,7 @@ function bar() {
 }
 //* function for loading co logos
 function coLogoLoad(logos) {
-    const logoContainer = document.querySelector('.logoContainer');
+    const logoContainer = QS('.logoContainer');
     logos.forEach((logo) => {
         const img = document.createElement('img');
 
@@ -164,7 +171,6 @@ function coLogoLoad(logos) {
 }
 // ************SETTING INTERVALS***********
 
-setInterval(slideRight,3000)
 
 function DateRecent() {
     const date = document.getElementById("date")
@@ -173,7 +179,7 @@ function DateRecent() {
 }
 // ************SETTING INTERVALS***********
 
-setInterval(slideRight, 5000)
+setInterval(slideRight, 7000)
 
 
 

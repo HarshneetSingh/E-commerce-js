@@ -18,6 +18,10 @@
     .about-info{
         left :480px;
     }
+    .product-description {
+       
+        padding-right: 0rem;
+    }
 }
 @media screen and (max-width:1042px){
     .about-head h3{
@@ -151,6 +155,10 @@
     .sh{
         font-size: 2.5rem;
         left: 20;
+    }
+    /* products */
+    .product{
+        width: 100%;
     }
 }
 
@@ -405,6 +413,23 @@
         width: 138px;
         left: 99px;
     }
+    .product-details ul button{
+        padding: 0.5rem 1rem;
+    }
+    .product-details{
+        flex-direction: column;
+        padding: 0rem 1rem 0.5rem 1rem ;
+        justify-content: end;
+        align-items: center;
+        row-gap: 0.1rem;
+        height: 200px;
+    }
+    
+    .product{
+        width: 70%;
+        flex-direction: column;
+        padding-bottom: 500px;
+    }
 }
 @media screen and (max-width:590px) {
     .hello{
@@ -483,9 +508,14 @@
     }
     .about-blur{
         height: 800px;
+        background-attachment: scroll;
     }
     .about-info div a {
         top: 350;
+    }
+    .product{
+        width: 80%;
+        
     }
 }
 @media screen and (max-width:525px) {
@@ -577,6 +607,14 @@
     .logoContainer img{
         width: 50px;
     }
+    
+    .product{
+        width: 90%;
+    }
+    .footer-shop{
+    background-attachment:scroll;
+
+    }
 }
 
 @media screen and (max-width:450px) {
@@ -626,7 +664,7 @@
         font-size: 3rem;
     }
     .about-info {
-        top: 506px;width: 200px;
+        top: 390px;width: 200px;
         left: 150px;
     }
   
@@ -634,6 +672,16 @@
         width: 75px;
         left: 62px;
     }
+    .products{
+        margin: 5vw 5vw 0vw 5vw;
+    }
+.product{
+    width: 100%;
+    margin: auto;
+}
+.product img{
+    width: 90vw;
+}
 
 
 }
@@ -663,6 +711,7 @@
         width: 185px;
         font-size: 1rem;
     }
+    
 }
 @media screen and (max-width:370px){
     .article-inner{
@@ -671,5 +720,12 @@
         top: 300px;
         width: 183px;
         left: 110px;
+    }
+    .products{
+        margin: 1vw;
+    }
+    .product img{
+       
+        width: 95vw;
     }
 }

@@ -1,43 +1,53 @@
 "use strict";
 //! element for top link
-const topLinks = document.querySelector(".up-Scroller");
+const topLinks = QS(".up-Scroller");
 // !elements for productdetail up
-const productDetails = document.querySelector(".product-details");
+const productDetails = QS(".product-details");
 // !elements for nav
 let currentPositionOfNav = 0;
 
 //! ELEMENTS FOR CART()
-const header = document.querySelector('header');
-const nav = document.querySelector('nav')
-const main = document.querySelector('main')
-const footer = document.querySelector('footer');
-const cartBtn = document.querySelector('.cart');
-const cartSide = document.querySelector('.cart-side')
+const header = QS('header');
+const nav = QS('nav')
+const main = QS('main')
+const footer = QS('footer');
+const cartBtn = QS('.cart');
+const cartSide = QS('.cart-side')
 
 // !ELEMENTS FOR bar
-const bars = document.querySelector('.bars i');
-const barSide = document.querySelector('.bar-side')
+const bars = QS('.bars i');
+const barSide = QS('.bar-side')
 
 // !for manipulating  product  in btn and  in cart
-let chosenPoduct = [];
-let itemcount
-let amount = 0;
-const cartArticlesContainer = document.querySelector('.cart-articles');
+let chosenProduct = checkingLocalStorage('chosenProduct');
 
-const cartTtlDiv = document.querySelector('.cart-ttl');
-const clearCartBtn = document.querySelector('.clear-cart-button');
+const cartArticlesContainer = QS('.cart-articles');
+
+const cartTtlDiv = QS('.cart-ttl');
+const clearCartBtn = QS('.clear-cart-button');
 // !ELEMENTS FOR PRODUCT and buttons
-let count = 0;
-const productContainer = document.querySelector('.products');
-const productButton = document.querySelector('.product-ul');
-const cartCount = document.querySelector('.cart-count');
 
+const oldCount = checkingLocalStorage('cartCount')
+const oldamount = checkingLocalStorage('Amount')
+let amount = oldamount;
+let count = oldCount;
+const productContainer = QS('.products');
+const productButton = QS('.product-ul');
+const cartCount = QS('.cart-count');
+// ! for local storage
+let storage = checkingLocalStorage('Products');
+let storageObject = {};
 // !        cart button
 cartBtn.addEventListener('click', cart);
 bars.addEventListener('click', bar);
 
 
-
+function QS(classORid) {
+    return document.querySelector(classORid);
+}
+function QSA(classORid) {
+    return document.querySelectorAll(classORid);
+}
 // ! *******************************************event listeners*******************************************************
 // *******dom content loading*****
 
@@ -45,15 +55,32 @@ window.addEventListener('DOMContentLoaded', () => {
     // loading of date
     DateRecent();
     // loading of co logo
+    let oldChosenProduct = JSON.parse(localStorage.getItem('chosenProduct'))
     const product = new products();
 
     product.getProducts().then((products) => {
         productLoader(products)
         pListLoader(products)
-    });
+        // loading of local storage 
+        if (oldChosenProduct != null) {
+            elementsForCart(oldChosenProduct)
+            const displayProduct = QSA('.product');
+            // displayProduct.forEach((product) => {
+            oldChosenProduct.forEach((product, index) => {
+                const preSelectedbtn = displayProduct[product - 1].lastElementChild.lastElementChild.lastElementChild
+                preSelectedbtn.style.backgroundColor = "red";
+                preSelectedbtn.style.color = "white";
+                preSelectedbtn.innerHTML = `IN CART  <img src="https://img.icons8.com/material-outlined/24/111/ok--v1.png" style="width:14px; height:14px; "/> `;
+                preSelectedbtn.removeEventListener('click', onlickCondition);
+
+            })
 
 
-})
+        }
+
+    })
+});
+
 // ****scroll *****
 
 window.addEventListener('scroll', () => {
@@ -63,6 +90,7 @@ window.addEventListener('scroll', () => {
 
     if (currentPositionOfNav < yOffset) {
         header.classList.add('hiding-navbar');
+
         productDetails.classList.add('product-details-up');
     } else {
         header.classList.remove('hiding-navbar');
@@ -81,7 +109,7 @@ window.addEventListener('scroll', () => {
 });
 // ****product btn listener*****
 function btnListener() {
-    const addToCart = document.querySelectorAll('.addToCart');
+    const addToCart = QSA('.addToCart');
 
     addToCart.forEach((btn) => {
         btn.addEventListener('click', onlickCondition);
@@ -104,21 +132,39 @@ function onlickCondition(e) {
 };
 function onClick(eTarget) {
     const element = eTarget;
+    const parentDivId = element.parentElement.parentElement.parentElement.id
     element.style.backgroundColor = "red";
     element.style.color = "white";
     element.innerHTML = `IN CART  <img src="https://img.icons8.com/material-outlined/24/111/ok--v1.png" style="width:14px; height:14px; "/> `;
 
     // ****increaing count on click and adding its innerhtml**** 
-    cartCount.textContent = ++count;
+    ++count
+    storingCartInLS(count)
 
-    // sending the product to the cart display
-    chosenPoduct.push(element.parentElement.parentElement.parentElement.id)
-    elementsForCart(chosenPoduct)
 
+    // !sending the product to the cart display
+
+    chosenProduct.push(parentDivId)
+    console.log(chosenProduct)
+
+    localStorage.setItem('chosenProduct', JSON.stringify(chosenProduct))
+    elementsForCart(chosenProduct)
+
+    // **** SETTING LOCAL STORAGE ****
+
+    storageObject["id"] = parentDivId;
+    storageObject["quantity"] = 1;
+    storage.push(storageObject)
+
+    localStorage.setItem('Products', JSON.stringify(storage))
+
+    // **setting amount
     amount += JSON.parse(previousElemDetail(element));
-    cartTtlDiv.textContent = amount;
-    // removing event listener
+    storingAmountInLS(amount)
+
+    //? removing event listener
     element.removeEventListener('click', onlickCondition);
+    storageObject = {};
 }
 // ********products loader*****
 class products {
@@ -170,18 +216,15 @@ function pListLoader(products) {
         }
         return acc
     }, ['All']).map((btn) => {
-        const li = document.createElement('li');
-        const button = document.createElement('button');
         return `<li><button class="btn-cotegory" data-cotegory="${btn}">${btn}</button></li>`
     });
     filteredBtn = filteredBtn.join(' ');
     productButton.innerHTML = filteredBtn;
 
-    const btnCotegory = document.querySelectorAll('.btn-cotegory')
+    const btnCotegory = QSA('.btn-cotegory')
     btnCotegory.forEach((btn) => {
         btn.addEventListener('click', (e) => {
             const btnTarget = e.target.textContent
-            console.log(btnTarget)
             const filteredProductList = products.filter(p => {
                 if (p.category == btnTarget) {
                     return p;
@@ -200,8 +243,10 @@ function pListLoader(products) {
 // ******* bringing elements to cart *********
 
 function elementsForCart(chosenBtnArr) {
+    console.log(chosenBtnArr)
+    cartCount.textContent = JSON.parse(localStorage.getItem('cartCount'));
     const bringingProduct = new products();
-
+    // chosenBtnArr.forEach((chosen) => {
     bringingProduct.getProducts().then(productsList => {
 
         const filterProductList = productsList.filter((items => {
@@ -213,17 +258,21 @@ function elementsForCart(chosenBtnArr) {
         }))
         ccL(filterProductList)
     })
+    // });
 
 }
 // ******* cart content loader ****************
 function ccL(products) {
-
-
+    console.log(products)
     let content = products.map(product => {
-        // for adding ttl to product list
-         itemcount = 1;
+        let localStorageCurrentItem = JSON.parse(localStorage.getItem('Products'))
 
-
+        localStorageCurrentItem = localStorageCurrentItem.filter(item => {
+            if (item.id == product.id) {
+                return item;
+            }
+        });
+        localStorageCurrentItem = localStorageCurrentItem[0].quantity
         return `<article class="your-cart-article" id="${product.id}">
         <img src="${product.Img}" alt="">
         <div class="article-info">
@@ -233,7 +282,7 @@ function ccL(products) {
         </div>
         <div class="Arrow">
             <i class="fa-solid fa-angle-up "></i>
-            <p class="item-count">${1}</p>
+            <p class="item-count">${localStorageCurrentItem}</p>
             <i class="fa-solid fa-angle-down "></i>
         </div>
     </article>`
@@ -243,36 +292,55 @@ function ccL(products) {
 
     content = content.join('');
     cartArticlesContainer.innerHTML = content;
-    // calling function for inc dec of an element
-    incDecOFproduct(itemcount);
+
+    // calling function for inc dec of an element   
+    incDecOFproduct();
     removeCartContent();
 }
 // *****remove and arrow btns*********
 function removeCartContent() {
-    const cartArticleRemove = document.querySelectorAll('.article-remove');
+    const cartArticleRemove = QSA('.article-remove');
     cartArticleRemove.forEach(articalRmvBtn => {
         articalRmvBtn.addEventListener('click', (e) => {
             const parentElement = e.target.parentElement.parentElement;
             const parentElementId = parentElement.id;
-            const quantityOfProduct= e.target.parentElement.parentElement.querySelector('.item-count').textContent;
-            //! using delete method to remove the id from chooseProducts
-            chosenPoduct = chosenPoduct.filter(elemID => {
-                if (!elemID == parentElementId) {
+            const quantityOfProduct = e.target.parentElement.parentElement.querySelector('.item-count').textContent;
+
+            chosenProduct = chosenProduct.filter((elemID ,index)=> {
+                if (!(elemID === parentElementId)) {
                     return elemID;
+                }else{
+                    chosenProduct.splice[index,1]
                 }
             });
+            
+            localStorage.setItem('chosenProduct', JSON.stringify(chosenProduct))
 
             // !decrementing the count of the cart TTL NUMBER
-            cartCount.textContent = count -quantityOfProduct;
-
+            count = count - quantityOfProduct;
+            storingCartInLS(count)
             //! deducting the amount from the cart TTL number quanties price
             let removingElementPrice = previousElemDetail(e.target)
-            amount -= JSON.parse(removingElementPrice*quantityOfProduct);
-            cartTtlDiv.textContent = amount;
+            amount -= JSON.parse(removingElementPrice * quantityOfProduct);
+            storingAmountInLS(amount)
 
             // !removing the child element
             cartArticlesContainer.removeChild(parentElement)
-            // ! adding event listeners again in the product btn 
+           
+            // *removing 
+            let localStorageArr = JSON.parse(localStorage.getItem('Products'));
+
+            let targetIndex = localStorageArr.reduce(function (acc, curr, index) {
+
+                if (curr.id == parentElementId) {
+                    acc.push(index)
+                }
+                return acc;
+            }, []);
+            // localStorage.
+            storage.splice(targetIndex[0], 1);
+            localStorage.setItem('Products', JSON.stringify(storage));
+             // ! adding event listeners again in the product btn 
 
             // !bringing the displayed products
             reAssignEventListeners(parentElementId)
@@ -280,32 +348,37 @@ function removeCartContent() {
     })
     // ******removing all product from the cart ******
     clearCartBtn.addEventListener('click', (e) => {
-        const cartArticles = document.querySelectorAll('.your-cart-article');
+        const cartArticles = QSA('.your-cart-article');
 
         cartArticles.forEach((item) => {
             cartArticlesContainer.removeChild(item);
         })
         // ! making chosenproducts=0; 
-        chosenPoduct = [];
+        chosenProduct = [];
         //!  making cart count to 0
+
         count = 0;
-        cartCount.textContent = count;
+        storingCartInLS(count)
         //! making cart ttl to 0
         amount = 0;
-        cartTtlDiv.textContent = amount;
+        storingAmountInLS(amount)
+
         // ! adding event listeners again in the product btn 
-        const addToCart = document.querySelectorAll('.addToCart');
+        const addToCart = QSA('.addToCart');
 
         addToCart.forEach((btn) => {
             // ? Adding event listener again to the removed btn 
             aRmvElemListener(btn)
 
         })
+
+        // clearing local storage
+        localStorage.clear();
     })
 }
 // ******* reassigning event listener to the remove products****
 function reAssignEventListeners(parentElementId) {
-    const product = document.querySelectorAll('.product');
+    const product = QSA('.product');
     const filtered_product = Array.from(product).filter(item => {
         // here product is an nodelist we cant apply filter on nodelist so we made the nodelist to array 
         // with( Array.from(product)) 
@@ -320,53 +393,99 @@ function reAssignEventListeners(parentElementId) {
     // ? Adding event listener again to the removed btn 
     aRmvElemListener(btnOFfilterdProduct)
 }
-
 // ******increading and decrsing of the product******
-function incDecOFproduct(itemcount) {
+function incDecOFproduct() {
 
-    const arrordiv = document.querySelectorAll('.Arrow');
+    const arrordiv = QSA('.Arrow');
 
     arrordiv.forEach((arrors) => {
+        // for adding ttl to product list
         arrors.addEventListener('click', (e) => {
             const parentElement = e.target.parentElement.parentElement
             const parentElementId = e.target.parentElement.parentElement.id
             const itemCountDom = e.target.parentElement.querySelector('.item-count');
             let previousElemDetailPrice = previousElemDetail(e.target.parentElement.previousElementSibling.lastElementChild);
 
-            if (e.target.classList.contains('fa-angle-up')) {
-                // !increasing count of products in the product
-                itemCountDom.textContent = ++itemcount;
 
+            // ? setting local storageObject
+            let localStorageArr = JSON.parse(localStorage.getItem('Products'));
+            let targetIndex = localStorageArr.reduce(function (acc, curr, index) {
+
+                if (curr.id == parentElementId) {
+                    acc.push(index)
+                }
+                return acc;
+            }, []);
+
+            // const localStorageCurrentItem = localStorageArr[targetIndex[0]];
+
+            if (e.target.classList.contains('fa-angle-up')) {
                 //?  increasing count of products in the cart COUNT 
 
-                cartCount.textContent = ++count;
 
+                ++count
+                storingCartInLS(count)
                 // ! increasing amount
                 amount += JSON.parse(previousElemDetailPrice);
-                cartTtlDiv.textContent = amount;
+                storingAmountInLS(amount)
+
+                // ? setting prouct buying count 
+
+                // ?increasing quantity amount
+
+                ++storage[targetIndex[0]].quantity
+
+                localStorage.setItem('Products', JSON.stringify(storage));
+
+                // !getting quantityOfProduct and priniting in dom
+                let localStorageArr = JSON.parse(localStorage.getItem('Products'));
+                itemCountDom.textContent = localStorageArr[targetIndex[0]].quantity;
+
+
+
             } else if (e.target.classList.contains('fa-angle-down')) {
 
-                // !decreasing count of products in the product
-                itemcount--;
-                itemCountDom.textContent = itemcount;
-
                 //?  increasing count of products in the cart COUNT
-                cartCount.textContent = --count;
+                --count;
+                storingCartInLS(count)
 
 
                 //! deducting the amount from the cart TTL NUMBER
-                amount -= previousElemDetailPrice;
-                cartTtlDiv.textContent = amount;
-                //?  increasing count of products in the cart COUNT 
 
-                cartCount.textContent = --count;
+                amount -= JSON.parse(previousElemDetailPrice);
+                storingAmountInLS(amount)
+
+
+
+                //! setting local storage
+
+                --storage[targetIndex[0]].quantity;
+                localStorage.setItem('Products', JSON.stringify(storage));
+
+                // *decreasing count of products in the productsList
+                let localStorageArr = JSON.parse(localStorage.getItem('Products'));
+                itemCountDom.textContent = localStorageArr[targetIndex[0]].quantity;
+
                 // ? if item count ==0
-                if (itemcount === 0) {
+
+                if (localStorageArr[targetIndex[0]].quantity === 0) {
                     reAssignEventListeners(parentElementId)
 
                     // !removing the child element
                     cartArticlesContainer.removeChild(parentElement)
 
+                    // ? removing the element from the local storage
+                    storage.splice(targetIndex[0], 1);
+                    localStorage.setItem('Products', JSON.stringify(storage));
+
+                    // *deductingfrom chosen productsList
+
+                    chosenProduct = chosenProduct.filter(elemID => {
+                        if (!elemID == parentElementId) {
+                            return elemID;
+                        }
+                    });
+                    localStorage.setItem('chosenProduct', JSON.stringify(chosenProduct));
                 }
 
 
@@ -387,12 +506,12 @@ function previousElemDetail(e) {
 // ******cart onclick******
 function cart() {
 
-    const crossBtn = document.querySelector('.cross-mark')
+    const crossBtn = QS('.cross-mark')
 
-    // adding class to show cart
+    // !adding class to show cart
     cartSide.classList.add('cart-side-active');
     cartSide.classList.remove('cart-side-not-active');
-    // making backgroung opacity increases
+    // ?making backgroung opacity increases
 
     nav.style.opacity = '0.7';
     main.style.opacity = '0.7';
@@ -402,14 +521,14 @@ function cart() {
 
     crossBtn.addEventListener('click', () => {
 
-        // making opacity normal
+        // !making opacity normal
         nav.style.opacity = '1';
         main.style.opacity = '1';
         footer.style.opacity = '1';
 
-        // adding cart-side-not-active
+        // ?adding cart-side-not-active
         cartSide.classList.add('cart-side-not-active')
-        // removing cart-side-active
+        // !removing cart-side-active
         cartSide.classList.remove('cart-side-active')
     })
 
@@ -421,14 +540,15 @@ function bar() {
     const crossBtn = document.createElement('i');
     crossBtn.className = "fa-solid fa-xmark for-bar";
     barSide.appendChild(crossBtn);
-    // adding class to show cart
+    // !adding class to show cart
     barSide.classList.add('bar-side-active');
     barSide.classList.remove('bar-side-not-active');
     header.classList.add('bar-content-show');
-
+    cartBtn.style.display="none"
     crossBtn.addEventListener('click', () => {
         barSide.removeChild(crossBtn);
         header.classList.remove('bar-content-show');
+        cartBtn.style.display="block"
 
 
         barSide.classList.add('bar-side-not-active')
@@ -452,4 +572,25 @@ function aRmvElemListener(btn) {
     btn.addEventListener('click', onlickCondition);
 
 
+}
+// ***** functions for storing local storage ****
+function storingCartInLS(count) {
+    localStorage.setItem('cartCount', JSON.stringify(count))
+    cartCount.textContent = JSON.parse(localStorage.getItem('cartCount'));
+}
+function storingAmountInLS(amount) {
+    localStorage.setItem('Amount', JSON.stringify(amount))
+    cartTtlDiv.textContent = JSON.parse(localStorage.getItem('Amount'));
+}
+// *****checkingLocalStorage*****
+function checkingLocalStorage(localStoragekey) {
+    let storage;
+    if (localStoragekey === 'Amount' || localStoragekey === 'cartCount') {
+
+        (JSON.parse(localStorage.getItem(localStoragekey))) ? storage = JSON.parse(localStorage.getItem(localStoragekey)) : storage = 0
+    } else {
+        (JSON.parse(localStorage.getItem(localStoragekey))) ? storage = JSON.parse(localStorage.getItem(localStoragekey)) : storage = []
+    }
+
+    return storage;
 }

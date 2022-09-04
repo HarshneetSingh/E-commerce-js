@@ -1,20 +1,20 @@
 
 // element for top link
-const topLinks = document.querySelector(".up-Scroller"); 
+const topLinks = QS(".up-Scroller"); 
 
 
 // elements for nav
 
 let currentPositionOfNav = 0;
 // ELEMENTS FOR CART()
-const header = document.querySelector('header');
-const nav = document.querySelector('nav')
-const main = document.querySelector('main')
-const footer = document.querySelector('footer');
-const cartBtn = document.querySelector('.cart');
-const cartSide = document.querySelector('.cart-side')
+const header = QS('header');
+const nav = QS('nav')
+const main = QS('main')
+const footer = QS('footer');
+const cartBtn = QS('.cart');
+const cartSide = QS('.cart-side')
 // elements for error in submission
-const form = document.querySelector('form');
+const form = QS('form');
 const user = document.getElementById('username');
 const lastname = document.getElementById('lastname');
 const email = document.getElementById('email');
@@ -22,14 +22,21 @@ const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 
 // ELEMENTS FOR bar
-const bars = document.querySelector('.bars i');
-const barSide = document.querySelector('.bar-side')
+const bars = QS('.bars i');
+const barSide = QS('.bar-side')
 
 
 // ?        cart button
 cartBtn.addEventListener('click', cart);
 bars.addEventListener('click', bar);
 
+// **** functions for loading qs and qsa
+function QS(classORid){
+    return document.querySelector(classORid);
+}
+function QSA(classORid){
+    return document.querySelectorAll(classORid);
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     // loading of date
@@ -62,7 +69,7 @@ window.addEventListener('scroll', () => {
 
 function cart() {
 
-    const crossBtn = document.querySelector('.cross-mark')
+    const crossBtn = QS('.cross-mark')
 
     // adding class to show cart
     cartSide.classList.add('cart-side-active');
@@ -98,10 +105,12 @@ function bar() {
     barSide.classList.add('bar-side-active');
     barSide.classList.remove('bar-side-not-active');
     header.classList.add('bar-content-show');
+    cartBtn.style.display="none"
 
     crossBtn.addEventListener('click', () => {
         barSide.removeChild(crossBtn);
         header.classList.remove('bar-content-show');
+        cartBtn.style.display="block"
 
 
         barSide.classList.add('bar-side-not-active')

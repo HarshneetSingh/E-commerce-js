@@ -39,8 +39,8 @@ header {
 
 .hiding-navbar {
     transform: translateY(calc(-1 * 80px));
-}
 
+}
 .coloring-navbar,
 header:hover {
     color: #111;
@@ -102,7 +102,9 @@ nav ul li:nth-child(1) {
     cursor: pointer;
     font-size: 1.8rem;
     position: relative;
-    
+}
+.hide-cart{
+    display: none;
 }
 .cart-count {
     position: absolute;
@@ -129,12 +131,14 @@ nav ul li a:hover,
 
 .cart-side {
     width: 400px;
-    height: 100vh;
+    height: 1000px;
     position: fixed;
     right: 0;
     background-color: white;
+    z-index: 100;
     top: 0;
     color: black;
+    
 }
 
 .cart-side-not-active {
@@ -145,7 +149,6 @@ nav ul li a:hover,
 .cart-side-active {
     transition: 0.5s;
     transform: translateX(0%);
-
 }
 
 .cross-mark {
@@ -452,7 +455,7 @@ nav ul li a:hover,
 .hello:nth-child(3) {
     background-attachment: fixed;
     padding: 3rem 2.5rem 3rem 1rem;
-    background-image: linear-gradient(to bottom, #ccc, rgba(246, 130, 130, 0.986)), url(/img/istockphoto-1096460950-612x612.jpg);
+    background-image: linear-gradient(to bottom, #ccc, rgba(246, 130, 130, 0.986));
     min-height: 350px;
     background-color: #111;
     width: 100%;
@@ -613,6 +616,7 @@ nav ul li a:hover,
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
     letter-spacing: 2px;
+    color: #111;
 }
 
 .blur-btn:hover {
@@ -969,7 +973,6 @@ form div img {
 .product-details ul button {
     background-color: transparent;
     letter-spacing: 2px;
-    font-stretch: extra-expanded;
     border: none;
     padding: 0.5rem 2rem;
     font-size: 0.9rem;
@@ -1164,4 +1167,8 @@ form div img {
     color: rgb(0, 0, 0);
     transition: 0.5s;
     box-shadow: 0 0 90px black;
+}
+.stop-scrolling{
+    height: 100%;
+            overflow: hidden;
 }
