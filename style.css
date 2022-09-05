@@ -34,13 +34,14 @@ header {
     padding: 0rem 1rem 0.5rem 1rem;
     letter-spacing: 3px;
     transition: transform 1s;
-    
+
 }
 
 .hiding-navbar {
     transform: translateY(calc(-1 * 80px));
 
 }
+
 .coloring-navbar,
 header:hover {
     color: #111;
@@ -103,9 +104,11 @@ nav ul li:nth-child(1) {
     font-size: 1.8rem;
     position: relative;
 }
-.hide-cart{
+
+.hide-cart {
     display: none;
 }
+
 .cart-count {
     position: absolute;
     top: -10px;
@@ -121,6 +124,7 @@ nav ul li:nth-child(1) {
     padding-left: 2px;
     place-items: center;
 }
+
 nav ul li a:hover,
 .cart:hover,
 .bars:hover {
@@ -138,7 +142,7 @@ nav ul li a:hover,
     z-index: 100;
     top: 0;
     color: black;
-    
+
 }
 
 .cart-side-not-active {
@@ -181,19 +185,22 @@ nav ul li a:hover,
     background-size: cover;
     width: 100%;
     height: 115.8vh;
-
+    opacity: 0;
 }
-
+.showSlide{
+    opacity: 1;
+    transition: opacity 1s;
+}
 .slide1 {
-    background-image: url(/img/pexels-polina-tankilevitch-6939095\ \(1\).jpg);
+    background-image: radial-gradient( rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.100)),url(/img/pexels-polina-tankilevitch-6939095\ \(1\).jpg);
 }
 
 .slide2 {
-    background-image: url(/img/both.jpg)
+    background-image:  radial-gradient( rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.200)),url(/img/both.jpg)
 }
 
 .slide3 {
-    background-image: url(/img/man.jpg);
+    background-image: radial-gradient( rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.100)), url(/img/man.jpg);
 }
 
 .slideRight,
@@ -288,6 +295,7 @@ nav ul li a:hover,
     position: relative;
 }
 
+
 .hello:nth-child(2) {
     color: white;
     background-color: #111;
@@ -307,6 +315,7 @@ nav ul li a:hover,
     border: 1px solid white;
     position: absolute;
     top: 40px;
+
 }
 
 /* info of women and mens */
@@ -319,6 +328,28 @@ nav ul li a:hover,
     padding: 0 1rem;
     font-size: 3rem;
     left: 100px;
+    
+    opacity: 0;
+    transform: translateX(10%)
+    
+}
+
+.showHeading{
+    opacity: 1;
+    transition: 1.5s;
+    transform: translateX(0%);
+    animation: bunce 1s 1.3s linear  1 ;
+}
+@keyframes bunce {
+    0%,100%{
+        transform: translateX(0%) ;
+    }
+    30%{
+    transform: translateX(10%) ;
+    }
+    60%{
+        transform: translateX(5%) ;
+    }
 }
 
 .deals-container {
@@ -328,6 +359,7 @@ nav ul li a:hover,
     position: relative;
     margin: auto;
     padding: 10rem 0rem 5rem 0rem;
+    overflow: hidden;    
 }
 
 .article-header h2 {
@@ -337,17 +369,31 @@ nav ul li a:hover,
     font-size: 6vw;
 }
 
-.article-header:nth-child(1) h2 {
+.containerH2 {
     left: 115px;
     top: 320px;
+    transform: translatey(50%);
+    opacity: 0;
+    z-index: 1;
 }
+.showH2 {
+    opacity: 1;
+    transform: translatey(0%);
+    transition: 1.5s;
 
-.deals-container div video {
-    /* margin-right: 45px; */
+}
+.containerVideo {
     width: 430;
+    transform: translateX(50%);
+    opacity: 0;
 }
 
+.showVideo {
+    opacity: 1;
+    transform: translateX(0%);
+    transition:  3s;
 
+}
 
 .article-inner {
     display: flex;
@@ -357,8 +403,18 @@ nav ul li a:hover,
     left: 110px;
     height: 170px;
     width: 28vw;
+    transform: translateY(100%);
+opacity: 0;
+z-index: 2;
 }
 
+.showArticle{
+    transform: translateY(0%);
+    opacity: 1;
+
+    transition: 1s linear ;
+    
+}
 
 .article-inner div {
     width: 25vw;
@@ -381,6 +437,7 @@ nav ul li a:hover,
     background-color: transparent;
     color: white;
     border: 1px solid white;
+    z-index: 1  ;
 }
 
 .buyNowBtn:hover {
@@ -403,7 +460,7 @@ nav ul li a:hover,
     top: 600px;
     left: 570px;
     text-align: left;
-
+    z-index: 3;
 }
 
 .vid {
@@ -413,11 +470,15 @@ nav ul li a:hover,
 /* watches */
 
 
-.deals-container:nth-child(5) div video {
+.containerVideoWatch {
     width: 100%;
     margin-top: 15vh;
+    opacity: 0;
 }
-
+.rolexShow{
+    opacity: 1;
+    transition: 3s;
+}
 .container3 h2 {
     font-size: 8vw;
     position: absolute;
@@ -465,6 +526,7 @@ nav ul li a:hover,
     letter-spacing: 2px;
     flex-wrap: wrap;
     justify-content: center;
+    overflow: visible;
 }
 
 .box {
@@ -479,8 +541,14 @@ nav ul li a:hover,
     line-height: 22px;
     border-radius: 5px;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.397);
+    opacity: 0;
+    transform: translateY(100%);
 }
-
+.box-show{
+    opacity: 1;
+    transform: translateY(0%);
+    transition: 1s;
+}
 .box hr {
     min-height: 10vh;
 }
@@ -547,8 +615,6 @@ nav ul li a:hover,
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
-
-
     filter: blur(4px);
     -webkit-filter: blur(2px);
 }
@@ -588,8 +654,18 @@ nav ul li a:hover,
     width: 100px;
     margin: 1rem 1w;
     color: white;
+    
 }
+.logo-img{
+    transform: scale(0.1);
+    opacity: 0;
+}
+.showLogoContainer {
+    transform: scale(1);
+    transition: 1s;
+    opacity: 1;
 
+}
 /* BLUR BTN  */
 .blur {
     position: relative;
@@ -993,8 +1069,14 @@ form div img {
     background-color: rgba(28, 26, 26, 0.09);
     width: 100%;
     min-height: 110vh;
+    overflow: hidden;
+    opacity: 0;
 }
+.showWrapper {
+    opacity: 1;
+    transition: 1s;
 
+}
 .products {
     width: 80%;
     margin: auto;
@@ -1005,11 +1087,17 @@ form div img {
     margin: auto;
     display: flex;
     justify-content: space-between;
+    transform: translateX(100%);
 
     height: 400px;
 
 }
+.productShow{
+    opacity: 1;
+    transition: 0.5s;
+    transform: translateX(0%);
 
+}
 .product img {
     width: 100%;
     flex-basis: 40%;
@@ -1045,6 +1133,7 @@ form div img {
     line-height: 20px;
     letter-spacing: 1px;
     padding-top: 1rem;
+    text-transform: lowercase;
 }
 
 .amount {
@@ -1069,8 +1158,9 @@ form div img {
     border-radius: 5px;
     margin-right: 10px;
     position: relative;
-    
+
 }
+
 .addToCart:hover {
     color: rgb(249, 253, 239);
     background-color: rgb(208, 182, 182);
@@ -1078,7 +1168,7 @@ form div img {
     border: 1px solid white;
 }
 
-.addToCart img{
+.addToCart img {
     position: absolute;
     top: 11;
     right: 5;
@@ -1089,86 +1179,120 @@ form div img {
     height: 14px;
 }
 
-.your-cart-section{
+.your-cart-section {
     width: 90%;
     margin: auto;
     letter-spacing: 0px;
 }
-.your-cart-section  {
+
+.your-cart-section {
     text-align: center;
 }
-.your-cart-article{
+
+.your-cart-article {
     margin-top: 50px;
     display: grid;
-    column-gap:1.5rem ;
-    grid-template-columns: auto 1fr auto ;
+    column-gap: 1.5rem;
+    grid-template-columns: auto 1fr auto;
 }
-.your-cart-section h2{
+
+.your-cart-section h2 {
     font-size: 1.8rem;
 }
-.your-cart-article img{
+
+.your-cart-article img {
     width: 95px;
     height: 70px;
-    box-shadow:0 0 140px #787777;
+    box-shadow: 0 0 140px #787777;
     object-fit: cover;
 }
-.article-info{
+
+.article-info {
     position: relative;
     text-align: left;
     margin-top: 0px;
 }
-.article-name{
+
+.article-name {
     font-size: 1.1rem;
     color: rgb(25, 20, 20);
     letter-spacing: 1px;
     text-transform: capitalize;
 }
-.article-price{
+
+.article-price {
     margin-top: 4px;
     color: black;
     font-size: 17px;
     font-weight: bold;
 }
-.article-remove{
+
+.article-remove {
     position: absolute;
     bottom: 2;
     color: #787777;
     font-size: 15px;
 }
-.article-remove:hover{
+
+.article-remove:hover {
     color: rgb(56, 22, 22);
     transition: 0.5s;
 }
-.cart-ttl-div{
+
+.cart-ttl-div {
     margin-top: 30px;
 }
-.clear-cart-button{
+
+.clear-cart-button {
     margin-top: 15px;
     padding: 0.8rem 3rem;
     border: 2px solid transparent;
     transition: 0.6s;
-    
+
 }
-.clear-cart-button:hover{
+
+.clear-cart-button:hover {
     color: #ffffff;
     transition: 0.6s;
     border: 2px solid #c4c4c4;
     background-color: rgba(12, 0, 0, 0.811);
 }
-.fa-angle-up{
-   margin-top: 10px; 
+
+.fa-angle-up {
+    margin-top: 10px;
 }
-.fa-angle-up, .fa-angle-down{
+
+.fa-angle-up,
+.fa-angle-down {
     color: #555555;
-    
+
     font-size: 18px;
 }
-.fa-angle-down:hover, .fa-angle-up:hover{
+
+.fa-angle-down:hover,
+.fa-angle-up:hover {
     color: rgb(0, 0, 0);
     transition: 0.5s;
     box-shadow: 0 0 90px black;
 }
-.stop-scrolling{
+
+.stop-scrolling {
     height: 100%;
-            overflow: hidden;
+    overflow: hidden;
+}
+
+.shopDirecting {
+    text-decoration: none;
+    color: black;
+    border: 2px solid #111;
+    padding: 0.5rem 1rem;
+
+}
+
+.shopDirecting:hover {
+    color: white;
+    background-color: #111;
+    border-color: white;
+    transition: 0.5s;
+
 }

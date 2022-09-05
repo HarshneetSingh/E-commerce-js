@@ -3,7 +3,7 @@ const logos = [
 ]
 // ************ELEMENTS***************8
 // elemet for top link 
-const topLinks = QS(".up-Scroller"); 
+const topLinks = QS(".up-Scroller");
 // elements for nav
 let currentPositionOfNav = 0;
 // Element FOR SLIDER
@@ -21,15 +21,23 @@ const main = QS('main')
 const footer = QS('footer');
 const cartBtn = QS('.cart');
 const cartSide = QS('.cart-side')
-
+const cartCount = QS('.cart-count');
 // ELEMENTS FOR bar
 const bars = QS('.bars i');
 const barSide = QS('.bar-side')
+
+// elements for intersectionObserver
+const containerVideo = QSA('.containerVideo');
+const containerH2 = QSA('.containerH2')
+const containerArticle = QSA('.article-inner')
+const dealsHeading = QSA('.deals-heading');
+const rolex = QS('.containerVideoWatch')
+const benefitBox = QSA('.box');
 // **** functions for loading qs and qsa
-function QS(classORid){
+function QS(classORid) {
     return document.querySelector(classORid);
 }
-function QSA(classORid){
+function QSA(classORid) {
     return document.querySelectorAll(classORid);
 }
 // ********** event listeners ****************
@@ -42,6 +50,9 @@ window.addEventListener('DOMContentLoaded', () => {
     DateRecent();
     // loading of co logo
     coLogoLoad(logos);
+    // cart count 
+    cartCount.textContent = JSON.parse(localStorage.getItem('cartCount'));
+
 })
 
 window.addEventListener('scroll', () => {
@@ -62,12 +73,12 @@ window.addEventListener('scroll', () => {
     }
     currentPositionOfNav = yOffset;
     // for paralaax
-    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.7}px`);
+    slideImg.forEach((slide) => slide.style.backgroundPositionY = `${yOffset * 0.3}px`);
 
     // for top link 
-    yOffset>700? topLinks.classList.add('show-scroller'):topLinks.classList.remove('show-scroller')
-});
+    yOffset > 700 ? topLinks.classList.add('show-scroller') : topLinks.classList.remove('show-scroller')
 
+});
 //?        SLIDER LEFT RIGHT BUTTON 
 leftBtn.addEventListener('click', slideLeft);
 rightBtn.addEventListener('click', slideRight);
@@ -86,6 +97,9 @@ function startImage() {
     slideImg.forEach((slide) => slide.style.display = "none");
     // now adding one initial image
     slideImg[current].style.display = "block";
+
+slideImg.forEach((slide) => makingObserver("showSlide", "0px", 0).observe(slide))
+
 }
 function slideRight() {
 
@@ -104,6 +118,48 @@ function slideLeft() {
     }
     startImage();
 }
+// ***** intersection observer ****************
+
+function makingObserver(classorId, rootMargi, threshold) {
+    let observer5 = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add(classorId);
+                observer5.unobserve(entry.target)
+            }
+
+        })
+    }, {
+        threshold: threshold,
+        rootMargin: rootMargi
+    }
+    )
+    return observer5;
+}
+// obsever 1
+containerVideo.forEach((video) => makingObserver("showVideo", "0px", 0.1).observe(video))
+// observer2 
+containerH2.forEach((h2) => makingObserver("showH2", "-50px", 0.5).observe(h2))
+// observer3
+containerArticle.forEach((articles) => {
+    if (articles.getAttribute('data-id') == "4") {
+        makingObserver("showArticle", "500px", 0.1).observe(articles)
+
+    } else {
+        makingObserver("showArticle", "-50px", 0.1).observe(articles)
+
+    }
+})
+// observer4
+dealsHeading.forEach((heading) => makingObserver("showHeading", "-30px", 1.0).observe(heading))
+// observer5
+makingObserver("rolexShow", "0px", 0.3).observe(rolex)
+// observer6
+benefitBox.forEach((box) => makingObserver("box-show", "0px", 0.4).observe(box))
+// observer7
+
+
 
 // *function for cartBtn
 function cart() {
@@ -144,12 +200,12 @@ function bar() {
     barSide.classList.add('bar-side-active');
     barSide.classList.remove('bar-side-not-active');
     header.classList.add('bar-content-show');
-    cartBtn.style.display="none"
+    cartBtn.style.display = "none"
 
     crossBtn.addEventListener('click', () => {
         barSide.removeChild(crossBtn);
         header.classList.remove('bar-content-show');
-        cartBtn.style.display="block"
+        cartBtn.style.display = "block"
 
         barSide.classList.add('bar-side-not-active')
         barSide.classList.remove('bar-side-active')
@@ -157,17 +213,21 @@ function bar() {
 
 
 }
+
 //* function for loading co logos
-function coLogoLoad(logos) {
+ function coLogoLoad(logos) {
     const logoContainer = QS('.logoContainer');
     logos.forEach((logo) => {
         const img = document.createElement('img');
-
+        img.className="logo-img";
+        
         img.src = "/img/" + logo;
         logoContainer.appendChild(img);
     })
-
-
+    
+     const logoContainerIMG = QSA('.logo-img');
+     console.log(logoContainerIMG);
+   logoContainerIMG.forEach((logo) => makingObserver("showLogoContainer", "0px", 1.0).observe(logo))
 }
 // ************SETTING INTERVALS***********
 
@@ -180,8 +240,3 @@ function DateRecent() {
 // ************SETTING INTERVALS***********
 
 setInterval(slideRight, 7000)
-
-
-
-
-

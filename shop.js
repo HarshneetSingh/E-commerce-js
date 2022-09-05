@@ -52,6 +52,8 @@ function QSA(classORid) {
 // *******dom content loading*****
 
 window.addEventListener('DOMContentLoaded', () => {
+    
+    makingObserver("showWrapper", "0px", 0).observe(QS('.products-wrapper'))
     // loading of date
     DateRecent();
     // loading of co logo
@@ -61,6 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
     product.getProducts().then((products) => {
         productLoader(products)
         pListLoader(products)
+
         // loading of local storage 
         if (oldChosenProduct != null) {
             elementsForCart(oldChosenProduct)
@@ -77,8 +80,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
         }
+        QSA('.product').forEach((product) => makingObserver("productShow", "0px", 0.04).observe(product))
 
     })
+
 });
 
 // ****scroll *****
@@ -116,6 +121,25 @@ function btnListener() {
     })
 }
 // ! *******************************************functions*******************************************************
+
+// ******* INTERSECTION OBSERVER *************
+function makingObserver(classorId, rootMargi, threshold) {
+    let observer5 = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add(classorId);
+                observer5.unobserve(entry.target)
+            }
+
+        })
+    }, {
+        threshold: threshold,
+        rootMargin: rootMargi
+    }
+    )
+    return observer5;
+}
 // *******btnListener function*********
 function onlickCondition(e) {
     const element = e.target;
@@ -181,6 +205,8 @@ class products {
     }
 }
 function productLoader(menu) {
+
+
     let displayProduct = menu.map((pDetails) => {
 
         return `<article class="product" id="${pDetails.id}">
@@ -199,13 +225,15 @@ function productLoader(menu) {
 
     </article>`
     });
-
+    
     displayProduct = displayProduct.join('');
     // here if we not put the '' then it will throw error in page as (,) will be added in it as
-
+    
     productContainer.innerHTML = displayProduct;
     // adding listeneres to the products
     btnListener()
+    QSA('.product').forEach((product) => makingObserver("productShow", "0px", 0.04).observe(product))
+
 
 }
 //********  button list loader
@@ -231,6 +259,7 @@ function pListLoader(products) {
                 }
             })
             if (btnTarget === 'All') {
+
                 productLoader(products)
             } else {
                 productLoader(filteredProductList)
@@ -243,7 +272,6 @@ function pListLoader(products) {
 // ******* bringing elements to cart *********
 
 function elementsForCart(chosenBtnArr) {
-    console.log(chosenBtnArr)
     cartCount.textContent = JSON.parse(localStorage.getItem('cartCount'));
     const bringingProduct = new products();
     // chosenBtnArr.forEach((chosen) => {

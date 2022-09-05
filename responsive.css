@@ -6,6 +6,7 @@
     .box{
         width: 400px;
     }
+
 }
 @media screen and (max-width:1250px) {
     .about-head h3{
@@ -22,6 +23,7 @@
        
         padding-right: 0rem;
     }
+
 }
 @media screen and (max-width:1042px){
     .about-head h3{
@@ -102,7 +104,7 @@
         margin-left: 30px;
     }
 
-    .deals-container:nth-child(5) div video {
+    .containerVideoWatch {
         width: 100%;
 
         margin: 15vh auto auto auto;
@@ -124,7 +126,7 @@
 }
 }
 @media screen and (max-width:880px) {
-    .deals-container div video {
+    .containerVideo {
         width: 350px;
     }
 
@@ -167,7 +169,7 @@
         width: 100%;
         justify-content: space-between;
     }
-    .deals-container div video{
+    .containerVideo{
         width: 300px; 
         margin-left: 0px;
         margin-right: 100;
@@ -182,7 +184,7 @@
     .article-inner {
         top: 440px;
     }
-    .article-header:nth-child(1) h2{
+    .containerH2{
         left: 100px;
         top: 295px;
     }
@@ -190,7 +192,7 @@
         font-size: 20px;
         line-height: 30px;
     }
-    .deals-container:nth-child(5) div video {
+    .containerVideoWatch {
         width: 90%;
     }
     .third {
@@ -345,7 +347,7 @@
     
 
     }
-    .deals-container div video{
+    .containerVideo{
         width: 70%;
         margin: 8rem auto auto
         auto;
@@ -354,10 +356,10 @@
     .deals-container div{
         margin: auto;
     }
-    .article-header:nth-child(1) h2,.article-header:nth-child(2) h2{
+    .containerH2,.article-header:nth-child(2) h2{
         top: 140px;
     }
-    .article-header:nth-child(1) h2 span ,.article-header:nth-child(2) h2 span {
+    .containerH2 span ,.article-header:nth-child(2) h2 span {
         color: white;
     }
     .article-inner{
@@ -434,6 +436,8 @@
 @media screen and (max-width:590px) {
     .hello{
         min-height:3300px ;
+        overflow: hidden;
+
     }
     .slider-info p {
         font-size: 2rem;
@@ -461,7 +465,7 @@
     form{
         width: 80%;
     }
-    .deals-container div video{
+    .containerVideo{
         width: 80%;
     }
         .article-inner{
@@ -473,7 +477,7 @@
         top: 270px;
     }
     
-    .article-header:nth-child(1) h2,.article-header:nth-child(2) h2{
+    .containerH2,.article-header:nth-child(2) h2{
         top: 140px;
         left: 0;
         margin-left: 10vw;
@@ -516,6 +520,13 @@
     .product{
         width: 80%;
         
+    }
+    .deals-container{
+        overflow: visible;
+    }
+
+    .hello:nth-child(4){
+        overflow: visible;
     }
 }
 @media screen and (max-width:525px) {
@@ -637,7 +648,7 @@
     .info-btn:hover {
         color: black;
     }
-    .deals-container div video{
+    .containerVideo{
         width: 98%;
         border-radius: 15px;
     } 
@@ -645,7 +656,7 @@
         top: 780px;
         left: 15;  width: 300px;
     }
-    .article-header:nth-child(1) h2, .article-header:nth-child(2) h2{
+    .containerH2, .article-header:nth-child(2) h2{
         font-size: 8vw;
         margin-left: 5vw;
     }

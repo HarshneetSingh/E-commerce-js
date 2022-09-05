@@ -13,6 +13,9 @@ const main = QS('main')
 const footer = QS('footer');
 const cartBtn = QS('.cart');
 const cartSide = QS('.cart-side')
+
+const cartCount = QS('.cart-count');
+
 // elements for error in submission
 const form = QS('form');
 const user = document.getElementById('username');
@@ -41,7 +44,9 @@ function QSA(classORid){
 window.addEventListener('DOMContentLoaded', () => {
     // loading of date
     DateRecent();
-    // loading of co logo
+
+    cartCount.textContent = JSON.parse(localStorage.getItem('cartCount'));
+
 })
 
 window.addEventListener('scroll', () => {
