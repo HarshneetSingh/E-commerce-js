@@ -350,7 +350,7 @@ function removeCartContent() {
             //! deducting the amount from the cart TTL number quanties price
             let removingElementPrice = previousElemDetail(e.target)
             amount -= JSON.parse(removingElementPrice * quantityOfProduct);
-            storingAmountInLS(amount)
+            storingAmountInLS(parseFloat(amount).toFixed(2))
 
             // !removing the child element
             cartArticlesContainer.removeChild(parentElement)
@@ -389,7 +389,7 @@ function removeCartContent() {
         storingCartInLS(count)
         //! making cart ttl to 0
         amount = 0;
-        storingAmountInLS(amount)
+        storingAmountInLS(parseFloat(amount).toFixed(2))
 
         // ! adding event listeners again in the product btn 
         const addToCart = QSA('.addToCart');
@@ -455,10 +455,9 @@ function incDecOFproduct() {
                 storingCartInLS(count)
                 // ! increasing amount
                 amount += JSON.parse(previousElemDetailPrice);
-                storingAmountInLS(amount)
+                storingAmountInLS(parseFloat(amount).toFixed(2))
 
                 // ? setting prouct buying count 
-
                 // ?increasing quantity amount
 
                 ++storage[targetIndex[0]].quantity
@@ -480,8 +479,8 @@ function incDecOFproduct() {
 
                 //! deducting the amount from the cart TTL NUMBER
 
-                amount -= JSON.parse(previousElemDetailPrice);
-                storingAmountInLS(amount)
+                amount -= parseFloat(previousElemDetailPrice).toFixed(2);
+                storingAmountInLS(parseFloat(amount).toFixed(2))
 
 
 
@@ -545,7 +544,7 @@ function cart() {
     main.style.opacity = '0.7';
     footer.style.opacity = '0.7';
 
-    cartTtlDiv.textContent = amount;
+    cartTtlDiv.textContent = parseFloat(amount).toFixed(2);
 
     crossBtn.addEventListener('click', () => {
 

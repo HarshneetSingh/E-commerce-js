@@ -16,28 +16,28 @@
         "category": "MAN"
     },
     {
-        "id": 2,
+        "id": 3,
         "productName": "hello world",
         "productDetails": "FLORAL PRINT CORSETRY-INSPIRED TOP",
         "price": 50.99,
         "Img": "img/w2.jpg",
         "category": "WOMAN"
     },{
-        "id": 2,
+        "id": 4,
         "productName": "hello world",
         "productDetails": "FLORAL JACQUARD KNIT POLO SHIRT",
         "price": 30.99,
         "Img": "img/m1.jpg",
         "category": "MAN"
     },{
-        "id": 3,
+        "id": 5,
         "productName": "hello world",
         "productDetails": "Fine watch",
         "price": 199.99,
         "Img": "img/a1.jpg",
         "category": "ACCESSORIES"
     },{
-        "id": 2,
+        "id": 6,
         "productName": "hello world",
         "productDetails": "DRAPED CORSETRY-INSPIRED TOP+1",
         "price": 399.99,
@@ -45,14 +45,14 @@
         "category": "WOMAN"
     },
     {
-        "id": 3,
+        "id": 7,
         "productName": "hello world",
         "productDetails": "lorem ipsum dolor sit amet",
         "price": 199.99,
         "Img": "img/a2.jpg",
         "category": "ACCESSORIES"
     },{
-        "id": 3,
+        "id": 8,
         "productName": "hello world",
         "productDetails": "lorem ipsum dolor sit amet",
         "price": 99.99,
